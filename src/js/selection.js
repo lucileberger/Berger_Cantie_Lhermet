@@ -25,7 +25,6 @@ export default class selection extends Phaser.Scene {
   preload() {
     // tous les assets du jeu sont placés dans le sous-répertoire src/assets/
     this.load.image("Map", "src/assets/Map3.png");
-    this.load.image("img_plateforme", "src/assets/platform.png");
     this.load.spritesheet("img_perso", "src/assets/dude.png", {
       frameWidth: 32,
       frameHeight: 48
@@ -33,6 +32,7 @@ export default class selection extends Phaser.Scene {
     this.load.image("img_porte1", "src/assets/door1.png");
     this.load.image("img_porte2", "src/assets/door2.png");
     this.load.image("img_porte3", "src/assets/door3.png");
+
   }
 
   /***********************************************************************/
@@ -46,8 +46,8 @@ export default class selection extends Phaser.Scene {
    * ainsi que toutes les instructions permettant de planifier des evenements
    */
   create() {
-      fct.doNothing();
-      fct.doAlsoNothing();
+    fct.doNothing();
+    fct.doAlsoNothing();
 
     /*************************************
      *  CREATION DU MONDE + PLATEFORMES  *
@@ -67,13 +67,9 @@ export default class selection extends Phaser.Scene {
     // l'image img_plateforme fait 400x32. On en met 2 à coté pour faire le sol
     // la méthode create permet de créer et d'ajouter automatiquement des objets à un groupe
     // on précise 2 parametres : chaque coordonnées et la texture de l'objet, et "voila!"
-    groupe_plateformes.create(200, 584, "img_plateforme");
-    groupe_plateformes.create(600, 584, "img_plateforme");
 
     //  on ajoute 3 platesformes flottantes
-    groupe_plateformes.create(600, 450, "img_plateforme");
-    groupe_plateformes.create(50, 300, "img_plateforme");
-    groupe_plateformes.create(750, 270, "img_plateforme");
+
 
     /****************************
      *  Ajout des portes   *
@@ -90,7 +86,7 @@ export default class selection extends Phaser.Scene {
     player = this.physics.add.sprite(100, 450, "img_perso");
 
     //  propriétées physiqyes de l'objet player :
-    player.setBounce(0.2); // on donne un petit coefficient de rebond
+    // on donne un petit coefficient de rebond
     player.setCollideWorldBounds(true); // le player se cognera contre les bords du monde
 
     /***************************
@@ -147,15 +143,20 @@ export default class selection extends Phaser.Scene {
 /***********************************************************************/
 
   update() {
-    
+
     if (clavier.left.isDown) {
       player.setVelocityX(-160);
       player.anims.play("anim_tourne_gauche", true);
     } else if (clavier.right.isDown) {
       player.setVelocityX(160);
       player.anims.play("anim_tourne_droite", true);
+    } else if (clavier.up.isDown) {
+      player.setVelocityY(-160);
+    } else if (clavier.down.isDown) {
+      player.setVelocityY(160);
     } else {
       player.setVelocityX(0);
+      player.setVelocityY(0);
       player.anims.play("anim_face");
     }
 
