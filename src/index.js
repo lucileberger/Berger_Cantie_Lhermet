@@ -1,33 +1,108 @@
-// chargement des librairies
-import selection from "/src/js/selection.js";
-import niveau1 from "/src/js/niveau1.js";
-import niveau2 from "/src/js/niveau2.js";
-import niveau3 from "/src/js/niveau3.js";
+import * as fct from "/src/js/fonctions.js";
 
-// configuration générale du jeu
-var config = {
-  type: Phaser.AUTO,
-  width: 800, // largeur en pixels
-  height: 600, // hauteur en pixels
-   scale: {
-        // Or set parent divId here
-        mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.CENTER_BOTH
-   },
-  physics: {
-    // définition des parametres physiques
-    default: "arcade", // mode arcade : le plus simple : des rectangles pour gérer les collisions. Pas de pentes
-    arcade: {
-      // parametres du mode arcade
-      gravity: {
-        y: 300 // gravité verticale : acceleration ddes corps en pixels par seconde
-      },
-      debug: true // permet de voir les hitbox et les vecteurs d'acceleration quand mis à true
+/***********************************************************************/
+/** VARIABLES GLOBALES 
+/***********************************************************************/
+
+var player; // désigne le sprite du joueur
+var clavier; // pour la gestion du clavier
+
+
+// définition de la classe "selection"
+export default class selection extends Phaser.Scene {
+  constructor() {
+    super({ key: "selection" }); // mettre le meme nom que le nom de la classe
+  }
+
+  preload() {
+    // tous les assets du jeu sont placés dans le sous-répertoire src/assets/
+
+    this.load.spritesheet("img_perso", "src/assets/dude.png", {
+      frameWidth: 32,
+      frameHeight: 48
+    });
+
+    // chargement tuiles de jeu
+this.load.image("Phaser_Map3", "src/assets/Map3.png");
+
+// chargement de la carte
+this.load.tilemapTiledJSON("carte", "src/assets/map2.json");  
+   
+  }
+
+  
+  create() {
+     // chargement de la carte
+const carteDuNiveau = this.add.tilemap("carte");
+
+// chargement du jeu de tuiles
+const tileset = carteDuNiveau.addTilesetImage(
+          "Map3",
+          "Phaser_Map3"
+        );
+
+const Calquestuiles = carteDuNiveau.createLayer(
+  "calque_tuiles",
+  tileset
+);  
+
+calque_tuiles.setCollisionByProperty({ estSolide: true });
+this.physics.add.collider(player,tuiles);
+this.cameras.main.startFollow(player);    
+
+    // On créée un nouveeau personnage : player
+    player = this.physics.add.sprite(100, 450, "img_perso");
+
+    //  propriétées physiqyes de l'objet player :
+    player.setCollideWorldBounds(true); // le player se cognera contre les bords du monde
+
+        this.anims.create({
+      key: "anim_tourne_gauche", // key est le nom de l'animation : doit etre unique poru la scene.
+      frames: this.anims.generateFrameNumbers("img_perso", {
+        start: 0,
+        end: 3
+      }), // on prend toutes les frames de img perso numerotées de 0 à 3
+      frameRate: 10, // vitesse de défilement des frames
+      repeat: -1 // nombre de répétitions de l'animation. -1 = infini
+    });
+
+    // creation de l'animation "anim_tourne_face" qui sera jouée sur le player lorsque ce dernier n'avance pas.
+    this.anims.create({
+      key: "anim_face",
+      frames: [{ key: "img_perso", frame: 4 }],
+      frameRate: 20
+    });
+
+    // creation de l'animation "anim_tourne_droite" qui sera jouée sur le player lorsque ce dernier tourne à droite
+    this.anims.create({
+      key: "anim_tourne_droite",
+      frames: this.anims.generateFrameNumbers("img_perso", {
+        start: 5,
+        end: 8
+      }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+   
+    clavier = this.input.keyboard.createCursorKeys();
+
+  
+  update() {
+    
+    if (clavier.left.isDown) {
+      player.setVelocityX(-160);
+      player.anims.play("anim_tourne_gauche", true);
+    } else if (clavier.right.isDown) {
+      player.setVelocityX(160);
+      player.anims.play("anim_tourne_droite", true);
+    } else {
+      player.setVelocityX(0);
+      player.anims.play("anim_face");
     }
-  },
-  scene: [selection, niveau1, niveau2, niveau3]
-};
 
-// création et lancement du jeu
-var game = new Phaser.Game(config);
-game.scene.start("selection");
+    }
+  }
+}
+
+
