@@ -10,8 +10,8 @@ import niveau3 from "/src/js/niveau3.js";
 // configuration générale du jeu
 var config = {
   type: Phaser.AUTO,
-  width: 800, // largeur en pixels
-  height: 600, // hauteur en pixels
+  width: 1000, // largeur en pixels
+  height: 1000, // hauteur en pixels
    scale: {
         // Or set parent divId here
         mode: Phaser.Scale.FIT,
