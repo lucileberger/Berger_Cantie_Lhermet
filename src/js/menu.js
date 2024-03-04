@@ -26,7 +26,7 @@ export default class menu extends Phaser.Scene {
 
     this.load.image("menu_fond", "./src/assets/Menu.png");
 
-    this.load.image("imageBoutonPlay", "./src/assets/play.png");
+    this.load.image("imageBoutonPlay", "./src/assets/Bouton_Play1.png");
 
   }
 
@@ -48,7 +48,7 @@ export default class menu extends Phaser.Scene {
 
     //on ajoute un bouton de clic, nommé bouton_play
 
-    var bouton_play = this.add.image(400, 360, "imageBoutonPlay").setDepth(1).setDisplaySize(50, 50);
+    var bouton_play = this.add.image(500, 600, "imageBoutonPlay").setDepth(1).setDisplaySize(90, 90);
 
   
 
