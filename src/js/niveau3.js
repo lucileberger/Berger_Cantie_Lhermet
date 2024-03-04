@@ -29,7 +29,7 @@ export default class niveau3 extends Phaser.Scene {
     this.physics.add.collider(this.player, this.groupe_plateformes);
   }
 
-  update() {
+  uupdate() {
     if (this.clavier.left.isDown) {
       this.player.setVelocityX(-160);
       this.player.anims.play("anim_tourne_gauche", true);
@@ -40,13 +40,19 @@ export default class niveau3 extends Phaser.Scene {
       this.player.setVelocityX(0);
       this.player.anims.play("anim_face");
     }
-    if (this.clavier.up.isDown && this.player.body.touching.down) {
+
+    // Mouvement vertical
+    if (this.clavier.up.isDown) {
       this.player.setVelocityY(-330);
+    } else if (this.clavier.down.isDown) {
+      this.player.setVelocityY(330);
+    } else {
+      this.player.setVelocityY(0);
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
       if (this.physics.overlap(this.player, this.porte_retour)) {
-        console.log("niveau 3 : retour vers selection");
+        console.log("niveau 9 : retour vers selection");
         this.scene.switch("selection");
       }
     }

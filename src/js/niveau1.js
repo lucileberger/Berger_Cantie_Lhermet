@@ -11,17 +11,17 @@ export default class niveau1 extends Phaser.Scene {
   }
 
   create() {
-    fct.doNothing();
-    fct.doAlsoNothing();
+  
 
     this.add.image(400, 300, "img_ciel");
     this.groupe_plateformes = this.physics.add.staticGroup();
     this.groupe_plateformes.create(200, 584, "img_plateforme");
     this.groupe_plateformes.create(600, 584, "img_plateforme");
     // ajout d'un texte distintcif  du niveau
-    this.add.text(400, 100, "Vous êtes dans le niveau 1", {
+    this.add.text(400, 100, "Les triangles cachés", {
       fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',
       fontSize: "22pt"
+     
     });
 
     this.porte_retour = this.physics.add.staticSprite(100, 550, "img_porte1");
@@ -45,12 +45,19 @@ export default class niveau1 extends Phaser.Scene {
       this.player.setVelocityX(0);
       this.player.anims.play("anim_face");
     }
-    if (this.clavier.up.isDown && this.player.body.touching.down) {
+
+    // Mouvement vertical
+    if (this.clavier.up.isDown) {
       this.player.setVelocityY(-330);
+    } else if (this.clavier.down.isDown) {
+      this.player.setVelocityY(330);
+    } else {
+      this.player.setVelocityY(0);
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
       if (this.physics.overlap(this.player, this.porte_retour)) {
+        console.log("niveau 9 : retour vers selection");
         this.scene.switch("selection");
       }
     }

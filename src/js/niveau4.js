@@ -1,4 +1,4 @@
-export default class niveau2 extends Phaser.Scene {
+export default class niveau4 extends Phaser.Scene {
     // constructeur de la classe
     constructor() {
       super({
@@ -29,29 +29,29 @@ export default class niveau2 extends Phaser.Scene {
     }
   
     update() {
-        
-    if (clavier.left.isDown) {
-        player.setVelocityX(-160);
-        player.anims.play("anim_tourne_gauche", true);
-      } else if (clavier.right.isDown) {
-        player.setVelocityX(160);
-        player.anims.play("anim_tourne_droite", true);
-      } else if (clavier.up.isDown) {
-        player.setVelocityY(-160);
-      } else if (clavier.down.isDown) {
-        player.setVelocityY(160);
+      if (this.clavier.left.isDown) {
+        this.player.setVelocityX(-160);
+        this.player.anims.play("anim_tourne_gauche", true);
+      } else if (this.clavier.right.isDown) {
+        this.player.setVelocityX(160);
+        this.player.anims.play("anim_tourne_droite", true);
       } else {
-        player.setVelocityX(0);
-        player.setVelocityY(0);
-        player.anims.play("anim_face");
+        this.player.setVelocityX(0);
+        this.player.anims.play("anim_face");
       }
-      if (clavier.up.isDown && player.body.touching.down) {
-        player.setVelocityY(-330);
+  
+      // Mouvement vertical
+      if (this.clavier.up.isDown) {
+        this.player.setVelocityY(-330);
+      } else if (this.clavier.down.isDown) {
+        this.player.setVelocityY(330);
+      } else {
+        this.player.setVelocityY(0);
       }
-      
+  
       if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
         if (this.physics.overlap(this.player, this.porte_retour)) {
-          console.log("niveau 4 : retour vers selection");
+          console.log("niveau 9 : retour vers selection");
           this.scene.switch("selection");
         }
       }
