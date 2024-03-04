@@ -8,19 +8,33 @@ export default class niveau1 extends Phaser.Scene {
     });
   }
   preload() {
+    this.load.image("Les_triangles_cachés", "src/assets/Les_triangles_cachés.png");
+    this.load.image("Réponse1", "src/assets/Chiffre9.jpg");
+    this.load.image("Réponse2", "src/assets/Chiffre15.jpg");
+    this.load.image("Réponse3", "src/assets/Chiffre23.png");
+    this.load.image("Réponse4", "src/assets/Chiffre27.jpg");
+
+
   }
 
   create() {
     fct.doNothing();
     fct.doAlsoNothing();
-
-    this.add.image(400, 300, "img_ciel");
-    this.groupe_plateformes = this.physics.add.staticGroup();
-    this.groupe_plateformes.create(200, 584, "img_plateforme");
-    this.groupe_plateformes.create(600, 584, "img_plateforme");
+    this.add.image(500, 500, "Les_triangles_cachés");
+    
     // ajout d'un texte distintcif  du niveau
-    this.add.text(400, 100, "Vous êtes dans le niveau 1", {
-      fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',
+    this.add.text(250, 100, "Les triangles cachés", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
+      fontSize: "60pt"
+    });
+
+    this.add.text(60, 800, "A vous de résoudre cette nouvelle énigme pour obtenir un nouvel indice:", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
+      fontSize: "30pt"
+    });
+
+    this.add.text(300, 850, "Combien comptez vous de triangles ?", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
       fontSize: "22pt"
     });
 
@@ -32,6 +46,17 @@ export default class niveau1 extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
     this.clavier = this.input.keyboard.createCursorKeys();
     this.physics.add.collider(this.player, this.groupe_plateformes);
+    
+    var bouton_play = this.add.image(200, 950, "Réponse1").setDepth(1).setDisplaySize(30, 30);
+    bouton_play.setInteractive();
+    var bouton_play = this.add.image(400, 950, "Réponse2").setDepth(1).setDisplaySize(30, 30);
+    bouton_play.setInteractive();
+    var bouton_play = this.add.image(600, 950, "Réponse3").setDepth(1).setDisplaySize(30, 30);
+    bouton_play.setInteractive();
+    var bouton_play = this.add.image(800, 950, "Réponse4").setDepth(1).setDisplaySize(30, 30);
+    bouton_play.setInteractive();
+
+ 
   }
 
   update() {
