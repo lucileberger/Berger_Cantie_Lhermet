@@ -30,7 +30,7 @@ export default class selection extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 48
     });
-    this.load.image("img_porte1", "src/assets/door1.png");
+    this.load.image("img_porte1", "src/assets/parcheminOk.png");
     this.load.image("img_porte2", "src/assets/door2.png");
     this.load.image("img_porte3", "src/assets/door3.png");
 
@@ -83,8 +83,9 @@ const calque_plateformes = carteDuNiveau.createLayer(
           tileset
         ); 
 
+        calque_plateformes.setCollisionByProperty({ estSolide: true }); 
 
-    /****************************
+        /****************************
      *  Ajout des portes   *
      ****************************/
     this.porte1 = this.physics.add.staticSprite(600, 414, "img_porte1");
@@ -101,7 +102,7 @@ const calque_plateformes = carteDuNiveau.createLayer(
     //  propriétées physiqyes de l'objet player :
     // on donne un petit coefficient de rebond
     player.setCollideWorldBounds(true); // le player se cognera contre les bords du monde
-
+this.physics.add.collider(player, calque_plateformes);
     /***************************
      *  CREATION DES ANIMATIONS *
      ****************************/
