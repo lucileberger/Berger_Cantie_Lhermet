@@ -70,8 +70,14 @@ export default class niveau1 extends Phaser.Scene {
       this.player.setVelocityX(0);
       this.player.anims.play("anim_face");
     }
-    if (this.clavier.up.isDown && this.player.body.touching.down) {
+
+    // Mouvement vertical
+    if (this.clavier.up.isDown) {
       this.player.setVelocityY(-330);
+    } else if (this.clavier.down.isDown) {
+      this.player.setVelocityY(330);
+    } else {
+      this.player.setVelocityY(0);
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {

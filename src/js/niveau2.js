@@ -19,31 +19,24 @@ export default class niveau2 extends Phaser.Scene {
     const centerY = 300;
     
     // Ajouter le texte de l'énigme avec la police Gabriolat
-    this.add.text(centerX, centerY - 100, "Les neufs Jetons", {
-      fontFamily: 'Gabriola',
-      fontSize: "42pt",
-      align: 'center'
-    }).setOrigin(0.5);
-    
-    // Ajouter le texte de l'énoncé de l'énigme
-    this.add.text(centerX, centerY + 100, "Énoncé de l’énigme :\nNeuf jetons numérotés de 1 à 9 sont placés sur une grille carrée comme sur la figure.\nTu dois enlever trois jetons pour qu’il reste deux jetons dans chaque rangée et deux jetons dans chaque colonne.\nEnsuite, additionne les nombres écrits sur les trois jetons qu’il a enlevés.", {
-      fontFamily: 'Gabriola',
-      fontSize: "18pt",
-      align: 'center'
-    }).setOrigin(0.5);
-    this.porte_retour = this.physics.add.staticSprite(100, 550, "img_porte2");
 
-    this.add.text(centerX, centerY + 200, "Quel est le plus grand résultat que l’on peut obtenir ?", {
-      fontFamily: 'Gabriola',
-      fontSize: "30pt",
-      align: 'center'
-    }).setOrigin(0.5);
+    this.add.text(300, 70, "Les neuf Jetons", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
+      fontSize: "60pt"
+    });
 
-   // Ajouter une zone de saisie pour la réponse
-const input = this.add.dom(centerX, centerY + 150).createFromHTML('<input type="text" style="font-family: Gabriola; font-size: 18pt; width: 300px; text-align: center;">');
+    this.add.text(60, 220, "Énoncé de l’énigme :\n \nNeuf jetons numérotés de 1 à 9 sont placés sur une grille carrée comme sur la figure.\nTu dois enlever trois jetons pour qu’il reste\n deux jetons dans chaque rangée et deux jetons dans chaque colonne.\nEnsuite, additionne les nombres écrits sur les trois jetons qu’il a enlevés.", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
+      fontSize: "26pt"
+    });
 
-// Configurer l'événement de saisie pour capturer la réponse
-input.addListener('keydown');
+    this.add.text(270, 880, "Quel est le plus grand résultat que l’on peut obtenir ?", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
+      fontSize: "22pt"
+    });
+
+    this.porte_retour = this.physics.add.staticSprite(100, 550, "img_porte1");
+
 
 
     this.player = this.physics.add.sprite(100, 450, "img_perso");
