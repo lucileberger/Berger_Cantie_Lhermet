@@ -3,7 +3,7 @@ import * as fct from "/src/js/fonctions.js";
 
 // chargement des librairies
 import selection from "/src/js/selection.js";
-import niveau1 from "/src/js/niveau1.js";
+import niveau1 from "/src/js/LesTrianglesCaches.js";
 import niveau2 from "/src/js/niveau2.js";
 import niveau3 from "/src/js/niveau3.js";
 import menu from "/src/js/menu.js";
