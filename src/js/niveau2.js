@@ -39,9 +39,10 @@ export default class niveau2 extends Phaser.Scene {
       fontSize: "22pt"
     });
 
-    this.porte_retour = this.physics.add.staticSprite(200, 950, "img_porte1");
-    this.gameOver = this.physics.add.staticSprite(400, 950, "img_porte1");
-    this.gameOver = this.physics.add.staticSprite(400, 950, "img_porte1");
+    this.porte7 = this.physics.add.staticSprite(200, 950, "img_porte7");
+    this.porte8 = this.physics.add.staticSprite(800, 950, "img_porte8");
+    this.porte9 = this.physics.add.staticSprite(600, 950, "img_porte9");
+    this.porte_retour = this.physics.add.staticSprite(400, 950, "img_porte1");
 
 
 
@@ -90,16 +91,15 @@ export default class niveau2 extends Phaser.Scene {
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
-      if (this.physics.overlap(this.player, this.porte_retour)) {
-        console.log("niveau 9 : retour vers selection");
+      if (this.physics.overlap(this.player, this.porte_retour))        
         this.scene.switch("selection");
-      }
-      if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
-        if (this.physics.overlap(this.player, this.gameOver)) {
-          console.log("niveau 9 : retour vers selection");
-          this.scene.switch("gameover");
-        }  
+       if (this.physics.overlap(this.player, this.porte9))
+        this.scene.switch("niveau9");
+        if (this.physics.overlap(this.player, this.porte7))
+        this.scene.switch("niveau9");
+        if (this.physics.overlap(this.player, this.porte8))
+        this.scene.switch("niveau9");
     }
   }
 }
-}
+
