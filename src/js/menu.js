@@ -19,11 +19,16 @@ export default class menu extends Phaser.Scene {
     this.load.image("menu_fond", "./src/assets/PhotoIntroduction.png");
 
     this.load.image("imageBoutonPlay", "./src/assets/Bouton_Play1.png");
-    
+    this.load.audio("sonsword", "src/Introduction.mp3");
+
 
   }
 
   create() {
+
+// ajout d'une musique
+sonsword = this.sound.add("Intuduction");
+Son.play();
 
 
     // on place les éléments de fond
