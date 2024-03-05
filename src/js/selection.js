@@ -95,6 +95,7 @@ calque_plateformes.setCollisionByProperty({ estSolide: true });
     this.porte7 = this.physics.add.staticSprite(950, 450, "img_porte7");
     this.porte8 = this.physics.add.staticSprite(950, 150, "img_porte8");
     this.porte9 = this.physics.add.staticSprite(950, 850, "img_porte9");
+    
 
     /****************************
      *  CREATION DU PERSONNAGE  *
