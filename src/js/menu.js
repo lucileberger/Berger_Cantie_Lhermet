@@ -1,17 +1,9 @@
 // chargement des librairies
 
- 
 
-/***********************************************************************/
 
-/** CONFIGURATION GLOBALE DU JEU ET LANCEMENT
 
-/***********************************************************************/
-
- 
-
-// configuration générale du jeu
-
+var musique_de_fond;
 export default class menu extends Phaser.Scene {
 
   constructor() {
@@ -24,15 +16,17 @@ export default class menu extends Phaser.Scene {
 
   preload() {
 
-    this.load.image("menu_fond", "./src/assets/Menu.png");
+    this.load.image("menu_fond", "./src/assets/PhotoIntroduction.png");
 
     this.load.image("imageBoutonPlay", "./src/assets/Bouton_Play1.png");
+    
 
   }
 
   create() {
 
-   // on place les éléments de fond
+
+    // on place les éléments de fond
 
     this.add
 
@@ -42,16 +36,13 @@ export default class menu extends Phaser.Scene {
 
       .setDepth(0)
 
-      .setDisplaySize(1000,1000);
+      .setDisplaySize(1000, 1000);
 
- 
+
 
     //on ajoute un bouton de clic, nommé bouton_play
 
-    var bouton_play = this.add.image(500, 600, "imageBoutonPlay").setDepth(1).setDisplaySize(90, 90);
-
-  
-
+    var bouton_play = this.add.image(500, 585, "imageBoutonPlay").setDepth(1).setDisplaySize(70, 60);
 
     //=========================================================
 
@@ -59,7 +50,7 @@ export default class menu extends Phaser.Scene {
 
     bouton_play.setInteractive();
 
- 
+
 
     //Cas ou la souris passe sur le bouton play
 
@@ -69,7 +60,7 @@ export default class menu extends Phaser.Scene {
 
     });
 
-   
+
 
     //Cas ou la souris ne passe plus sur le bouton play
 
@@ -79,7 +70,7 @@ export default class menu extends Phaser.Scene {
 
     });
 
- 
+
 
     //Cas ou la sourris clique sur le bouton play :
 
@@ -90,7 +81,11 @@ export default class menu extends Phaser.Scene {
       this.scene.start("selection");
 
     });
-
   }
 
-}
+ 
+  }
+
+
+
+

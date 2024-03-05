@@ -25,9 +25,9 @@ export default class selection extends Phaser.Scene {
   preload() {
     // tous les assets du jeu sont placés dans le sous-répertoire src/assets/
     this.load.image("Map", "src/assets/Map3.png");
-    this.load.spritesheet("img_perso", "src/assets/dude.png", {
-      frameWidth: 32,
-      frameHeight: 48
+    this.load.spritesheet("img_perso", "src/assets/detective2.png", {
+      frameWidth: 22,
+      frameHeight: 55,
     });
     this.load.image("img_porte1", "src/assets/Parchemin.png");
     this.load.image("img_porte2", "src/assets/Parchemin.png");
@@ -39,19 +39,34 @@ export default class selection extends Phaser.Scene {
     this.load.image("img_porte8", "src/assets/Parchemin.png");
     this.load.image("img_porte9", "src/assets/Parchemin.png");
 
+
+    // chargement tuiles de jeu
+this.load.image("Phaser_tuiles_de_jeu", "src/assets/Map3.png");
+this.load.tilemapTiledJSON("carte", "src/assets/Mapfinal4.json"); 
   }
-
-  /***********************************************************************/
-  /** FONCTION CREATE 
-/***********************************************************************/
-
-  /* La fonction create est appelée lors du lancement de la scene
-   * si on relance la scene, elle sera appelée a nouveau
-   * on y trouve toutes les instructions permettant de créer la scene
-   * placement des peronnages, des sprites, des platesformes, création des animations
-   * ainsi que toutes les instructions permettant de planifier des evenements
-   */
   create() {
+    // chargement de la carte
+const carteDuNiveau = this.add.tilemap("carte");
+const tileset = carteDuNiveau.addTilesetImage(
+      "Map3",
+      "Phaser_tuiles_de_jeu"
+    );  
+// chargement du calque calque_plateformes
+const calque_plateformes = carteDuNiveau.createLayer(
+"calque_plateformes",
+tileset
+); 
+calque_plateformes.setCollisionByProperty({ estSolide: true }); 
+this.physics.add.collider(player, calque_plateformes); 
+// redimentionnement du monde avec les dimensions calculées via tiled
+this.physics.world.setBounds(0, 0, 3200, 640);
+//  ajout du champs de la caméra de taille identique à celle du monde
+this.cameras.main.setBounds(0, 0, 3200, 640);
+// ancrage de la caméra sur le joueur
+this.cameras.main.startFollow(player);  
+
+  
+
     fct.doNothing();
     fct.doAlsoNothing();
 
@@ -121,7 +136,7 @@ export default class selection extends Phaser.Scene {
     // creation de l'animation "anim_tourne_face" qui sera jouée sur le player lorsque ce dernier n'avance pas.
     this.anims.create({
       key: "anim_face",
-      frames: [{ key: "img_perso", frame: 4 }],
+      frames: [{ key: "img_perso", frame: 0 }],
       frameRate: 20
     });
 
@@ -146,9 +161,10 @@ export default class selection extends Phaser.Scene {
      *  GESTION DES INTERATIONS ENTRE  GROUPES ET ELEMENTS *
      ******************************************************/
 
-    //  Collide the player and the groupe_etoiles with the groupe_plateformes
-    this.physics.add.collider(player, groupe_plateformes);
+ 
+
   }
+  
 
   /***********************************************************************/
   /** FONCTION UPDATE 
@@ -156,21 +172,56 @@ export default class selection extends Phaser.Scene {
 
   update() {
 
-    if (clavier.left.isDown) {
-      player.setVelocityX(-160);
-      player.anims.play("anim_tourne_gauche", true);
-    } else if (clavier.right.isDown) {
-      player.setVelocityX(160);
-      player.anims.play("anim_tourne_droite", true);
-    } else if (clavier.up.isDown) {
-      player.setVelocityY(-160);
-    } else if (clavier.down.isDown) {
-      player.setVelocityY(160);
-    } else {
-      player.setVelocityX(0);
-      player.setVelocityY(0);
-      player.anims.play("anim_face");
-    }
+
+    // Initialisez les vitesses de déplacement sur les axes X et Y
+let velocityX = 0;
+let velocityY = 0;
+
+// Vitesse de déplacement
+const speed = 140;
+
+// Détection de la pression des touches pour le mouvement horizontal
+if (clavier.left.isDown) {
+  velocityX = -speed;
+} else if (clavier.right.isDown) {
+  velocityX = speed;
+} else {
+  velocityX = 0; // Aucune touche horizontale pressée
+}
+
+// Détection de la pression des touches pour le mouvement vertical
+if (clavier.up.isDown) {
+  velocityY = -speed;
+} else if (clavier.down.isDown) {
+  velocityY = speed;
+} else {
+  velocityY = 0; // Aucune touche verticale pressée
+}
+
+// Appliquez les vitesses calculées au joueur
+player.setVelocityX(velocityX);
+player.setVelocityY(velocityY);
+
+// Animation basée sur la direction du mouvement
+if (velocityX < 0) {
+  player.anims.play("anim_tourne_gauche", true);
+} else if (velocityX > 0) {
+  player.anims.play("anim_tourne_droite", true);
+} else if (velocityY < 0) {
+  // Ajoutez ici l'animation pour se déplacer vers le haut, si disponible
+  player.anims.play("anim_tourne_haut", true);
+} else if (velocityY > 0) {
+  // Ajoutez ici l'animation pour se déplacer vers le bas, si disponible
+  player.anims.play("anim_tourne_bas", true);
+} else {
+  // Animation par défaut (idling) si le personnage ne se déplace pas
+}
+
+ if (velocityX === 0 && velocityY === 0) {
+  // Aucun mouvement : jouer l'animation d'idle
+  player.anims.play("anim_face", true);
+}
+
 
     if (clavier.up.isDown && player.body.touching.down) {
       player.setVelocityY(-330);
@@ -196,6 +247,9 @@ export default class selection extends Phaser.Scene {
         if (this.physics.overlap(player, this.porte9))
         this.scene.switch("niveau9");
     }
+
+    this.cameras.main.startFollow(player);
+    this.cameras.main.setZoom(2.5);
   }
 }
 
