@@ -10,7 +10,7 @@ export default class niveau2 extends Phaser.Scene {
   }
 
   create() {
-    this.cameras.main.setBackgroundColor("#3A7287");
+    this.cameras.main.setBackgroundColor("#26518E");
     // Centrer l'image "9"
     this.add.image(400, 50, "9");
   
