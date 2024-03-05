@@ -42,13 +42,13 @@ export default class selection extends Phaser.Scene {
 
     // chargement tuiles de jeu
 this.load.image("Phaser_tuiles_de_jeu", "src/assets/Map3.png");
-this.load.tilemapTiledJSON("carte", "src/assets/Mapfinal4.json"); 
+this.load.tilemapTiledJSON("carte", "src/assets/MapFinal6.json"); 
   }
   create() {
     // chargement de la carte
 const carteDuNiveau = this.add.tilemap("carte");
 const tileset = carteDuNiveau.addTilesetImage(
-      "Map3",
+      "tuiles_de_jeu",
       "Phaser_tuiles_de_jeu"
     );  
 // chargement du calque calque_plateformes
@@ -57,15 +57,6 @@ const calque_plateformes = carteDuNiveau.createLayer(
 tileset
 ); 
 calque_plateformes.setCollisionByProperty({ estSolide: true }); 
-this.physics.add.collider(player, calque_plateformes); 
-// redimentionnement du monde avec les dimensions calculées via tiled
-this.physics.world.setBounds(0, 0, 3200, 640);
-//  ajout du champs de la caméra de taille identique à celle du monde
-this.cameras.main.setBounds(0, 0, 3200, 640);
-// ancrage de la caméra sur le joueur
-this.cameras.main.startFollow(player);  
-
-  
 
     fct.doNothing();
     fct.doAlsoNothing();
@@ -111,10 +102,12 @@ this.cameras.main.startFollow(player);
 
     // On créée un nouveeau personnage : player
     player = this.physics.add.sprite(100, 450, "img_perso");
+    this.physics.add.collider(player, calque_plateformes); 
 
     //  propriétées physiqyes de l'objet player :
     // on donne un petit coefficient de rebond
     player.setCollideWorldBounds(true); // le player se cognera contre les bords du monde
+    this.cameras.main.startFollow(player);  
 
     /***************************
      *  CREATION DES ANIMATIONS *
@@ -160,9 +153,6 @@ this.cameras.main.startFollow(player);
     /*****************************************************
      *  GESTION DES INTERATIONS ENTRE  GROUPES ET ELEMENTS *
      ******************************************************/
-
- 
-
   }
   
 
