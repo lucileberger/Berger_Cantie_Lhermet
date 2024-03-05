@@ -7,7 +7,9 @@ import * as fct from "/src/js/fonctions.js";
 var player; // désigne le sprite du joueur
 var clavier; // pour la gestion du clavier
 var groupe_plateformes;
-
+var light; 
+var velocityX;
+var velocityY;
 // définition de la classe "selection"
 export default class selection extends Phaser.Scene {
   constructor() {
@@ -25,9 +27,9 @@ export default class selection extends Phaser.Scene {
   preload() {
     // tous les assets du jeu sont placés dans le sous-répertoire src/assets/
     this.load.image("Map", "src/assets/Map3.png");
-    this.load.spritesheet("img_perso", "src/assets/detective2.png", {
-      frameWidth: 22,
-      frameHeight: 55,
+    this.load.spritesheet("img_perso", "src/assets/perso-removebg-preview.png", {
+      frameWidth: 40.28,
+      frameHeight: 48,
     });
     this.load.image("img_porte1", "src/assets/Parchemin.png");
     this.load.image("img_porte2", "src/assets/Parchemin.png");
@@ -43,6 +45,9 @@ export default class selection extends Phaser.Scene {
     // chargement tuiles de jeu
 this.load.image("Phaser_tuiles_de_jeu", "src/assets/Map3.png");
 this.load.tilemapTiledJSON("carte", "src/assets/MapFinal6.json"); 
+
+
+
   }
   create() {
     // chargement de la carte
@@ -52,11 +57,11 @@ const tileset = carteDuNiveau.addTilesetImage(
       "Phaser_tuiles_de_jeu"
     );  
 // chargement du calque calque_plateformes
-const calque_plateformes = carteDuNiveau.createLayer(
+this.calque_plateformes = carteDuNiveau.createLayer(
 "calque_plateformes",
 tileset
 ); 
-calque_plateformes.setCollisionByProperty({ estSolide: true }); 
+this.calque_plateformes.setCollisionByProperty({ estSolide: true }); 
 
     fct.doNothing();
     fct.doAlsoNothing();
@@ -103,7 +108,7 @@ calque_plateformes.setCollisionByProperty({ estSolide: true });
 
     // On créée un nouveeau personnage : player
     player = this.physics.add.sprite(100, 450, "img_perso");
-    this.physics.add.collider(player, calque_plateformes); 
+    this.physics.add.collider(player, this.calque_plateformes); 
 
     //  propriétées physiqyes de l'objet player :
     // on donne un petit coefficient de rebond
@@ -120,8 +125,8 @@ calque_plateformes.setCollisionByProperty({ estSolide: true });
     this.anims.create({
       key: "anim_tourne_gauche", // key est le nom de l'animation : doit etre unique poru la scene.
       frames: this.anims.generateFrameNumbers("img_perso", {
-        start: 0,
-        end: 3
+        start: 13,
+        end: 0
       }), // on prend toutes les frames de img perso numerotées de 0 à 3
       frameRate: 10, // vitesse de défilement des frames
       repeat: -1 // nombre de répétitions de l'animation. -1 = infini
@@ -138,8 +143,8 @@ calque_plateformes.setCollisionByProperty({ estSolide: true });
     this.anims.create({
       key: "anim_tourne_droite",
       frames: this.anims.generateFrameNumbers("img_perso", {
-        start: 5,
-        end: 8
+        start: 0,
+        end: 13
       }),
       frameRate: 10,
       repeat: -1
@@ -154,6 +159,14 @@ calque_plateformes.setCollisionByProperty({ estSolide: true });
     /*****************************************************
      *  GESTION DES INTERATIONS ENTRE  GROUPES ET ELEMENTS *
      ******************************************************/
+    player.setPipeline( 'Light2D');
+    this.calque_plateformes.setPipeline( 'Light2D');
+  
+    this. light = this.lights.addLight(600, 300, 300);
+    this.light.setIntensity(2);
+    this. lights. enable().setAmbientColor(0x000000);
+
+   
   }
   
 
@@ -163,10 +176,10 @@ calque_plateformes.setCollisionByProperty({ estSolide: true });
 
   update() {
 
-
-    // Initialisez les vitesses de déplacement sur les axes X et Y
-let velocityX = 0;
-let velocityY = 0;
+    this.input.on('pointermove', function (pointer) {
+      light.x = pointer.x;
+      light.y = pointer.y;
+  });
 
 // Vitesse de déplacement
 const speed = 140;
@@ -174,8 +187,11 @@ const speed = 140;
 // Détection de la pression des touches pour le mouvement horizontal
 if (clavier.left.isDown) {
   velocityX = -speed;
+  player.setFlipX(true);
 } else if (clavier.right.isDown) {
   velocityX = speed;
+  player.setFlipX(false);
+  
 } else {
   velocityX = 0; // Aucune touche horizontale pressée
 }
@@ -213,6 +229,8 @@ if (velocityX < 0) {
   player.anims.play("anim_face", true);
 }
 
+this.light.x= player.x;
+this.light.y =player.y;
 
     if (clavier.up.isDown && player.body.touching.down) {
       player.setVelocityY(-330);
