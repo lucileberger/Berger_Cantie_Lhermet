@@ -11,7 +11,7 @@ export default class niveau3 extends Phaser.Scene {
   create() {
     this.add.image(400, 300, "img_ciel");
     this.groupe_plateformes = this.physics.add.staticGroup();
-    this.groupe_plateformes.create(200, 584, "img_plateforme");
+    this.groupe_plateformes.create(220, 584, "img_plateforme");
     this.groupe_plateformes.create(600, 584, "img_plateforme");
     // ajout d'un texte distintcif  du niveau
     this.add.text(400, 100, "Vous êtes dans le niveau 3", {
@@ -29,7 +29,7 @@ export default class niveau3 extends Phaser.Scene {
     this.physics.add.collider(this.player, this.groupe_plateformes);
   }
 
-  update() {
+  uupdate() {
     if (this.clavier.left.isDown) {
       this.player.setVelocityX(-160);
       this.player.anims.play("anim_tourne_gauche", true);
@@ -40,13 +40,19 @@ export default class niveau3 extends Phaser.Scene {
       this.player.setVelocityX(0);
       this.player.anims.play("anim_face");
     }
-    if (this.clavier.up.isDown && this.player.body.touching.down) {
-      this.player.setVelocityY(-330);
+
+    // Mouvement vertical
+    if (this.clavier.up.isDown) {
+      this.player.setVelocityY(-160);
+    } else if (this.clavier.down.isDown) {
+      this.player.setVelocityY(160);
+    } else {
+      this.player.setVelocityY(0);
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
       if (this.physics.overlap(this.player, this.porte_retour)) {
-        console.log("niveau 3 : retour vers selection");
+        console.log("niveau 9 : retour vers selection");
         this.scene.switch("selection");
       }
     }
