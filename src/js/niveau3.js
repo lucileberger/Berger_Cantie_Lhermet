@@ -43,9 +43,9 @@ export default class niveau3 extends Phaser.Scene {
 
     // Mouvement vertical
     if (this.clavier.up.isDown) {
-      this.player.setVelocityY(-330);
+      this.player.setVelocityY(-160);
     } else if (this.clavier.down.isDown) {
-      this.player.setVelocityY(330);
+      this.player.setVelocityY(160);
     } else {
       this.player.setVelocityY(0);
     }

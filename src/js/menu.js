@@ -87,7 +87,7 @@ export default class menu extends Phaser.Scene {
 
     bouton_play.on("pointerup", () => {
 
-      this.scene.start("selection");
+      this.scene.start("histoire");
 
     });
 
