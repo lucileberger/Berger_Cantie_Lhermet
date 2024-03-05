@@ -1,7 +1,9 @@
-import * as fct from "/src/js/fonctions.js";
 
 
 // chargement des librairies
+
+
+
 import selection from "/src/js/selection.js";
 import histoire from "/src/js/histoire.js";
 import niveau1 from "/src/js/niveau1.js";
@@ -14,7 +16,8 @@ import niveau7 from "/src/js/niveau7.js";
 import niveau8 from "/src/js/niveau8.js";
 import niveau9 from "/src/js/niveau9.js";
 import menu from "/src/js/menu.js";
-import gameover from "/src/js/gameover.js";
+
+
 
 
 

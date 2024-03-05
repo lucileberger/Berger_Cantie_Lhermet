@@ -9,9 +9,9 @@ export default class niveau3 extends Phaser.Scene {
   preload() {
     this.load.image("Horloge", "src/assets/Horaire.jpg");
     this.load.image("Réponse1.2", "src/assets/10H39.jpg");
-    this.load.image("Réponse2.2", "src/assets/6H53.png");
+    this.load.image("Réponse2.2", "src/assets/10H23.jpg");
     this.load.image("Réponse3.2", "src/assets/5H50.jpg");
-    this.load.image("Réponse4.2", "src/assets/10H23.jpg");
+    this.load.image("Réponse4.2", "src/assets/6H53.png");
     this.load.image("RG3","src/assets/Bleu.jpg")
 
    
@@ -38,7 +38,14 @@ export default class niveau3 extends Phaser.Scene {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
       fontSize: "22pt"
     });
-    this.porte_retour = this.physics.add.staticSprite(400, 950, "img_porte1");
+    
+    
+    
+    this.porte7 = this.physics.add.staticSprite(200, 950, "img_porte7");
+    this.porte8 = this.physics.add.staticSprite(400, 950, "img_porte8");
+    this.porte9 = this.physics.add.staticSprite(600, 950, "img_porte9");
+    this.porte_retour = this.physics.add.staticSprite(800, 950, "img_porte1");
+
 
 
 
@@ -87,10 +94,14 @@ export default class niveau3 extends Phaser.Scene {
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
-      if (this.physics.overlap(this.player, this.porte_retour)) {
-        console.log("niveau 9 : retour vers selection");
+      if (this.physics.overlap(this.player, this.porte_retour))        
         this.scene.switch("selection");
-      }
+       if (this.physics.overlap(this.player, this.porte9))
+        this.scene.switch("niveau9");
+        if (this.physics.overlap(this.player, this.porte7))
+        this.scene.switch("niveau9");
+        if (this.physics.overlap(this.player, this.porte8))
+        this.scene.switch("niveau9");
     }
   }
 }

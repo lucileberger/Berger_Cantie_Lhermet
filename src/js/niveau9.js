@@ -1,60 +1,93 @@
+import * as fct from "/src/js/fonctions.js";
+
 export default class niveau9 extends Phaser.Scene {
-    // constructeur de la classe
-    constructor() {
-      super({
-        key: "niveau9" //  ici on précise le nom de la classe en tant qu'identifiant
-      });
+  // constructeur de la classe
+  constructor() {
+    super({
+      key: "niveau9" //  ici on précise le nom de la classe en tant qu'identifiant
+    });
+  }
+  preload() {
+    this.load.image("perdu", "src/assets/GameOver.png");
+    this.load.image("bouton", "src/assets/BoutonMenu.png");
+
+         
+}
+
+  create() {
+    fct.doNothing();
+    fct.doAlsoNothing();
+    this.add.image(500, 500, "perdu");
+
+    // ajout d'un texte distintcif  du niveau
+    this.add.text(300, 35, "Vous avez Perdu", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
+      fontSize: "60pt"
+    });
+
+    this.add.text(600, 100, "Appuyez ici pour aller au menu", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
+      fontSize: "30pt"
+    });
+
+    
+
+    this.porte_retour = this.physics.add.staticSprite(900, 200, "bouton");
+   
+
+    this.player = this.physics.add.sprite(100, 450, "img_perso");
+    this.player.refreshBody();
+    this.player.setBounce(0.2);
+    this.player.setCollideWorldBounds(true);
+    this.clavier = this.input.keyboard.createCursorKeys();
+    this.physics.add.collider(this.player, this.groupe_plateformes);
+
+    
+  }
+
+  update() {
+    if (this.clavier.left.isDown) {
+      this.player.setVelocityX(-160);
+      this.player.anims.play("anim_tourne_gauche", true);
+    } else if (this.clavier.right.isDown) {
+      this.player.setVelocityX(160);
+      this.player.anims.play("anim_tourne_droite", true);
+    } else {
+      this.player.setVelocityX(0);
+      this.player.anims.play("anim_face");
     }
-    preload() {}
-  
-    create() {
-      this.add.image(400, 300, "img_ciel");
-      this.groupe_plateformes = this.physics.add.staticGroup();
-      this.groupe_plateformes.create(200, 584, "img_plateforme");
-      this.groupe_plateformes.create(600, 584, "img_plateforme");
-      // ajout d'un texte distintcif  du niveau
-      this.add.text(400, 100, "Vous êtes dans le niveau 9", {
-        fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',
-        fontSize: "22pt"
-      });
-  
-      this.porte_retour = this.physics.add.staticSprite(100, 550, "img_porte9");
-  
-      this.player = this.physics.add.sprite(100, 450, "img_perso");
-      this.player.refreshBody();
-      this.player.setBounce(0.2);
-      this.player.setCollideWorldBounds(true);
-      this.clavier = this.input.keyboard.createCursorKeys();
-      this.physics.add.collider(this.player, this.groupe_plateformes);
+
+    // Mouvement vertical
+    if (this.clavier.up.isDown) {
+      this.player.setVelocityY(-330);
+    } else if (this.clavier.down.isDown) {
+      this.player.setVelocityY(330);
+    } else {
+      this.player.setVelocityY(0);
     }
-  
-    update() {
-      if (this.clavier.left.isDown) {
-        this.player.setVelocityX(-160);
-        this.player.anims.play("anim_tourne_gauche", true);
-      } else if (this.clavier.right.isDown) {
-        this.player.setVelocityX(160);
-        this.player.anims.play("anim_tourne_droite", true);
-      } else {
-        this.player.setVelocityX(0);
-        this.player.anims.play("anim_face");
-      }
-  
-      // Mouvement vertical
-      if (this.clavier.up.isDown) {
+
+    // Mouvement vertical
+    if (this.clavier.up.isDown) {
+      this.player.setVelocityY(-330);
+    } else if (this.clavier.down.isDown) {
+      this.player.setVelocityY(330);
+    } else {
+      this.player.setVelocityY(0);
+      if (this.clavier.up.isDown && this.player.body.touching.down) {
         this.player.setVelocityY(-330);
-      } else if (this.clavier.down.isDown) {
-        this.player.setVelocityY(330);
-      } else {
-        this.player.setVelocityY(0);
       }
-  
+
       if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
-        if (this.physics.overlap(this.player, this.porte_retour)) {
-          console.log("niveau 9 : retour vers selection");
-          this.scene.switch("selection");
+        if (this.physics.overlap(this.player, this.porte_retour)) {        
+          this.scene.switch("menu");
         }
       }
-    }
-  }
+      
   
+        
+          }
+        }
+      
+    }
+  
+

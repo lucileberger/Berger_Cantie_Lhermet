@@ -40,6 +40,7 @@ export default class selection extends Phaser.Scene {
     this.load.image("img_porte7", "src/assets/Parchemin.png");
     this.load.image("img_porte8", "src/assets/Parchemin.png");
     this.load.image("img_porte9", "src/assets/Parchemin.png");
+    
 
 
     // chargement tuiles de jeu
