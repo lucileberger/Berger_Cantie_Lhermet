@@ -26,6 +26,7 @@ export default class histoire extends Phaser.Scene {
         this.load.image("histoire", "./src/assets/parch.jpg");
   
       this.load.image("imageBoutonPlay", "./src/assets/Bouton_Play1.png");
+      this.load.audio("sonsword", "./src/assets/Introduction.mp3");
   
     }
   
@@ -80,13 +81,16 @@ export default class histoire extends Phaser.Scene {
    
   
       //Cas ou la sourris clique sur le bouton play :
+
+      
   
       // on lance le niveau 1
   
       bouton_play.on("pointerup", () => {
   
         this.scene.start("selection");
-  
+        
+        this.sonsword.stop();
       });
   
     }
