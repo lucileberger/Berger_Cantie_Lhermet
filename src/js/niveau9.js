@@ -25,6 +25,7 @@ export default class niveau9 extends Phaser.Scene {
 
     this.load.image("perdu", "src/assets/GameOver.png");
     this.load.image("bouton", "src/assets/BoutonMenu.png");
+    this.load.image("")
     this.load.audio("lose", "./src/assets/Bruh.mp3");
 
 
@@ -37,8 +38,7 @@ export default class niveau9 extends Phaser.Scene {
 this.game.config.lose.play();
     
 
-fct.doNothing();
-    fct.doAlsoNothing();
+
     this.add.image(500, 500, "perdu");
 
    // on place les éléments de fond
