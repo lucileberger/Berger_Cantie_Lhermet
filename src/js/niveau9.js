@@ -1,93 +1,96 @@
-import * as fct from "/src/js/fonctions.js";
+// chargement des librairies
+
+/***********************************************************************/
+
+/** CONFIGURATION  L'HISTOIRE 
+ 
+
+/***********************************************************************/
+
+ 
+
+// configuration générale du jeu
 
 export default class niveau9 extends Phaser.Scene {
-  // constructeur de la classe
+
   constructor() {
-    super({
-      key: "niveau9" //  ici on précise le nom de la classe en tant qu'identifiant
-    });
+
+    super({ key: "niveau9" });
+
   }
+
+  //on charge les images
+
   preload() {
+
     this.load.image("perdu", "src/assets/GameOver.png");
     this.load.image("bouton", "src/assets/BoutonMenu.png");
 
-         
-}
+
+  }
 
   create() {
-    fct.doNothing();
-    fct.doAlsoNothing();
-    this.add.image(500, 500, "perdu");
 
-    // ajout d'un texte distintcif  du niveau
-    this.add.text(300, 35, "Vous avez Perdu", {
-      fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
-      fontSize: "60pt"
-    });
+   // on place les éléments de fond
 
-    this.add.text(600, 100, "Appuyez ici pour aller au menu", {
-      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
-      fontSize: "30pt"
-    });
+   this.add.image(500, 500, "perdu");
+
+    //on ajoute un bouton de clic, nommé bouton_play
+
+    var bouton_over= this.add.image(850, 80, "bouton").setDepth(1).setDisplaySize(150, 140);
+    
+
+    // Texte à ajouter en blanc gris avec la police Chiller en gras
 
     
 
-    this.porte_retour = this.physics.add.staticSprite(900, 200, "bouton");
+    //=========================================================
+
+    //on rend le bouton interratif
+
+    bouton_over.setInteractive();
+    
+
+ 
+
+    //Cas ou la souris passe sur le bouton play
+
+    bouton_over.on("pointerover", () => {
+
+      // a remplir (faire changer la couleur du bouton comme pour le perso quand il meurt)
+
+    });
+
    
 
-    this.player = this.physics.add.sprite(100, 450, "img_perso");
-    this.player.refreshBody();
-    this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
-    this.clavier = this.input.keyboard.createCursorKeys();
-    this.physics.add.collider(this.player, this.groupe_plateformes);
+    //Cas ou la souris ne passe plus sur le bouton play
+
+    bouton_over.on("pointerout", () => {
+
+      // a remplir
+
+    });
+
+ 
+
+    //Cas ou la sourris clique sur le bouton play :
+
+    
+
+    // on lance le niveau 1
+
+    bouton_over.on("pointerup", () => {
+
+      this.scene.switch("niveau1");
+      
+      
+    });
 
     
   }
 
-  update() {
-    if (this.clavier.left.isDown) {
-      this.player.setVelocityX(-160);
-      this.player.anims.play("anim_tourne_gauche", true);
-    } else if (this.clavier.right.isDown) {
-      this.player.setVelocityX(160);
-      this.player.anims.play("anim_tourne_droite", true);
-    } else {
-      this.player.setVelocityX(0);
-      this.player.anims.play("anim_face");
-    }
+ 
 
-    // Mouvement vertical
-    if (this.clavier.up.isDown) {
-      this.player.setVelocityY(-330);
-    } else if (this.clavier.down.isDown) {
-      this.player.setVelocityY(330);
-    } else {
-      this.player.setVelocityY(0);
-    }
+}
 
-    // Mouvement vertical
-    if (this.clavier.up.isDown) {
-      this.player.setVelocityY(-330);
-    } else if (this.clavier.down.isDown) {
-      this.player.setVelocityY(330);
-    } else {
-      this.player.setVelocityY(0);
-      if (this.clavier.up.isDown && this.player.body.touching.down) {
-        this.player.setVelocityY(-330);
-      }
-
-      if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
-        if (this.physics.overlap(this.player, this.porte_retour)) {        
-          this.scene.switch("menu");
-        }
-      }
-      
-  
-        
-          }
-        }
-      
-    }
-  
 

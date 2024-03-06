@@ -51,7 +51,7 @@ export default class Rules extends Phaser.Scene {
   
       // Texte à ajouter en blanc gris avec la police Chiller en gras
   
-      var texte = this.add.text(220, 150, " Voici les règles du jeu : \n\n Le joueur explore le manoir à la recherche de 6 parchemins. \nLorsqu'il trouve un parchemin, il doit résoudre l'énigme associée pour progresser. \nChaque énigme résolue lui donne un indice pour identifier le nom du tueur. \nAttention, une mauvaise réponse met fin au jeu.\nUne fois les 6 parchemins récupérés, le joueur doit se rendre \nau centre de la carte, dans l'espace bleu, pour ouvrir le coffre \net découvrir l'identité du criminel. \nLe joueur sera récompensé d'un trésor s'il réussit à terminer la quête.", { font: "bold 24px Papyrus", fill: "#EDE9CE" }).setDepth(1);
+      var texte = this.add.text(230, 150, "             Voici les règles du jeu : \n\n Le joueur explore le manoir à la recherche de 6 parchemins. \nLorsqu'il trouve un parchemin, il doit résoudre l'énigme associée pour progresser. \nChaque énigme résolue lui donne un indice pour identifier le nom du tueur. \nAttention, une mauvaise réponse met fin au jeu.\nUne fois les 6 parchemins récupérés, le joueur doit se rendre \nau centre de la carte, dans l'espace bleu, pour ouvrir le coffre \net découvrir l'identité du criminel. \nLe joueur sera récompensé d'un trésor s'il réussit à terminer la quête.", { font: "bold 24px Papyrus", fill: "#EDE9CE" }).setDepth(1);
   
       //=========================================================
   

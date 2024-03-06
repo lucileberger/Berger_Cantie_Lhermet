@@ -7,10 +7,10 @@ export default class niveau2 extends Phaser.Scene {
   }
   preload() {
     this.load.image("image_fond", "src/assets/IMAGE9.png");
-    this.load.image("Réponse1", "src/assets/19.jpg");
-    this.load.image("Réponse2", "src/assets/Chiffre15.jpg");
-    this.load.image("Réponse3", "src/assets/4.jpg");
-    this.load.image("Réponse4", "src/assets/2.jpg");
+    this.load.image("Réponse1", "src/assets/19.png");
+    this.load.image("Réponse2", "src/assets/Chiffre15.png");
+    this.load.image("Réponse3", "src/assets/4.png");
+    this.load.image("Réponse4", "src/assets/2.png");
     this.load.image("RG2","src/assets/Vert.jpg")
 
    

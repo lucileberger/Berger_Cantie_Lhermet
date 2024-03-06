@@ -177,10 +177,7 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
 
   update() {
 
-    this.input.on('pointermove', function (pointer) {
-      light.x = pointer.x;
-      light.y = pointer.y;
-  });
+   
 
 // Vitesse de déplacement
 const speed = 140;
@@ -238,24 +235,53 @@ this.light.y =player.y;
     }
 
     if (Phaser.Input.Keyboard.JustDown(clavier.space) == true) {
-      if (this.physics.overlap(player, this.porte1))
-        this.scene.switch("niveau1");
-      if (this.physics.overlap(player, this.porte2))
+      if (this.physics.overlap(player, this.porte1)){ this.scene.switch("niveau1");
+      this.porte1.disableBody(true,true);}
+        
+
+      if (this.physics.overlap(player, this.porte2)){
         this.scene.switch("niveau2");
-      if (this.physics.overlap(player, this.porte3))
+        this.porte2.disableBody(true,true);}
+
+
+
+
+      if (this.physics.overlap(player, this.porte3)){
         this.scene.switch("niveau3");
-        if (this.physics.overlap(player, this.porte4))
+        this.porte3.disableBody(true,true);}
+
+
+
+        if (this.physics.overlap(player, this.porte4)){
         this.scene.switch("niveau4");
-        if (this.physics.overlap(player, this.porte5))
+        this.porte4.disableBody(true,true);}
+
+
+
+        if (this.physics.overlap(player, this.porte5)){
         this.scene.switch("niveau5");
-        if (this.physics.overlap(player, this.porte6))
+        this.porte5.disableBody(true,true);}
+
+
+
+        if (this.physics.overlap(player, this.porte6)){
         this.scene.switch("niveau6");
-        if (this.physics.overlap(player, this.porte7))
+        this.porte6.disableBody(true,true);}
+
+
+        if (this.physics.overlap(player, this.porte7)){
         this.scene.switch("niveau7");
-        if (this.physics.overlap(player, this.porte8))
+        this.porte7.disableBody(true,true);}
+
+
+        if (this.physics.overlap(player, this.porte8)){
         this.scene.switch("niveau8");
-        if (this.physics.overlap(player, this.porte9))
+        this.porte8.disableBody(true,true);}
+
+
+        if (this.physics.overlap(player, this.porte9)){
         this.scene.switch("niveau9");
+        this.porte9.disableBody(true,true);}
     }
 
     this.cameras.main.startFollow(player);
