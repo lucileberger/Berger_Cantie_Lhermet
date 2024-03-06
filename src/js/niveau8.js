@@ -5,7 +5,14 @@ export default class niveau8 extends Phaser.Scene {
         key: "niveau8" //  ici on précise le nom de la classe en tant qu'identifiant
       });
     }
-    preload() {}
+    preload() {
+// chargement tuiles de jeu
+this.load.image("Phaser_tuilesdejeu", "src/assets/Tileset.png");
+
+// chargement de la carte
+this.load.tilemapTiledJSON("carte", "src/assets/cartelabyrhinte.tmj");  
+
+    }
   
     create() {
       this.add.image(400, 300, "img_ciel");
