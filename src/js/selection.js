@@ -40,6 +40,8 @@ export default class selection extends Phaser.Scene {
     this.load.image("img_porte7", "src/assets/Parchemin.png");
     this.load.image("img_porte8", "src/assets/Parchemin.png");
     this.load.image("img_porte9", "src/assets/Parchemin.png");
+    this.load.image("fin", "src/assets/Coffre.png");
+
     
 
     // chargement tuiles de jeu
@@ -98,14 +100,11 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
     this.porte4 = this.physics.add.staticSprite(90, 850, "img_porte4");
     this.porte5 = this.physics.add.staticSprite(330, 850, "img_porte5");
     this.porte6 = this.physics.add.staticSprite(700, 850, "img_porte6");
-    this.porte7 = this.physics.add.staticSprite(950, 450, "img_porte7");
-    this.porte8 = this.physics.add.staticSprite(950, 150, "img_porte8");
-    this.porte9 = this.physics.add.staticSprite(950, 850, "img_porte9");
+    this.porte7 = this.physics.add.staticSprite(510, 465, "fin");
+    //this.porte8 = this.physics.add.staticSprite(950, 150, "img_porte8");
+    //this.porte9 = this.physics.add.staticSprite(950, 850, "img_porte9");
     
-
-    /****************************
-     *  CREATION DU PERSONNAGE  *
-     ****************************/
+  
 
     // On créée un nouveeau personnage : player
     player = this.physics.add.sprite(100, 450, "img_perso");
