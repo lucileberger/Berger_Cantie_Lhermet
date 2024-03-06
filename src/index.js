@@ -13,6 +13,8 @@ import niveau6 from "/src/js/niveau6.js";
 import niveau7 from "/src/js/niveau7.js";
 import niveau8 from "/src/js/niveau8.js";
 import niveau9 from "/src/js/niveau9.js";
+import niveau10 from "/src/js/niveau10.js";
+
 import menu from "/src/js/menu.js";
 import gameover from "/src/js/gameover.js";
 
