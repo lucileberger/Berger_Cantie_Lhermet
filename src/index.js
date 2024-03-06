@@ -1,7 +1,9 @@
-import * as fct from "/src/js/fonctions.js";
 
 
 // chargement des librairies
+
+
+
 import selection from "/src/js/selection.js";
 import histoire from "/src/js/histoire.js";
 import niveau1 from "/src/js/niveau1.js";
@@ -14,9 +16,10 @@ import niveau7 from "/src/js/niveau7.js";
 import niveau8 from "/src/js/niveau8.js";
 import niveau9 from "/src/js/niveau9.js";
 import niveau10 from "/src/js/niveau10.js";
-
+impport Rules from "/src/js/Rules.js";
 import menu from "/src/js/menu.js";
-import gameover from "/src/js/gameover.js";
+
+
 
 
 
@@ -41,7 +44,7 @@ var config = {
       debug: true // permet de voir les hitbox et les vecteurs d'acceleration quand mis à true
     }
   },
-  scene: [menu,histoire,selection,niveau1, niveau2, niveau3,niveau4,niveau5,niveau6,niveau7,niveau8,niveau9]
+  scene: [menu,histoire,Rules,selection,niveau1, niveau2, niveau3,niveau4,niveau5,niveau6,niveau7,niveau8,niveau9]
 };
 
 // création et lancement du jeu

@@ -1,9 +1,10 @@
+
 // chargement des librairies
 
 
 
 
-var musique_de_fond;
+
 export default class menu extends Phaser.Scene {
 
   constructor() {
@@ -19,11 +20,16 @@ export default class menu extends Phaser.Scene {
     this.load.image("menu_fond", "./src/assets/PhotoIntroduction.png");
 
     this.load.image("imageBoutonPlay", "./src/assets/Bouton_Play1.png");
-    
+    this.load.audio("sonsword", "./src/assets/Introduction.mp3");
+
 
   }
 
   create() {
+
+// ajout d'une musique
+let sonsword = this.sound.add("sonsword");
+    sonsword.play();
 
 
     // on place les éléments de fond

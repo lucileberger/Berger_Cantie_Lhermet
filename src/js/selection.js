@@ -27,9 +27,9 @@ export default class selection extends Phaser.Scene {
   preload() {
     // tous les assets du jeu sont placés dans le sous-répertoire src/assets/
     this.load.image("Map", "src/assets/Map3.png");
-    this.load.spritesheet("img_perso", "src/assets/perso-removebg-preview.png", {
-      frameWidth: 40.28,
-      frameHeight: 48,
+    this.load.spritesheet("img_perso", "src/assets/perso2new.png", {
+      frameWidth: 25.5,
+      frameHeight: 50,
     });
     this.load.image("img_porte1", "src/assets/Parchemin.png");
     this.load.image("img_porte2", "src/assets/Parchemin.png");
@@ -40,7 +40,7 @@ export default class selection extends Phaser.Scene {
     this.load.image("img_porte7", "src/assets/Parchemin.png");
     this.load.image("img_porte8", "src/assets/Parchemin.png");
     this.load.image("img_porte9", "src/assets/Parchemin.png");
-
+    
 
     // chargement tuiles de jeu
 this.load.image("Phaser_tuiles_de_jeu", "src/assets/Map3.png");
@@ -50,6 +50,7 @@ this.load.tilemapTiledJSON("carte", "src/assets/MapFinal6.json");
 
   }
   create() {
+    
     // chargement de la carte
 const carteDuNiveau = this.add.tilemap("carte");
 const tileset = carteDuNiveau.addTilesetImage(
