@@ -20,7 +20,14 @@ export default class niveau6 extends Phaser.Scene {
   
     }
   
+
     create() {
+  
+      this.player = this.physics.add.sprite(10, 10, "img_perso");
+      this.player.refreshBody();
+      this.player.setBounce(0.2);
+      this.player.setCollideWorldBounds(true);
+      this.clavier = this.input.keyboard.createCursorKeys();
   
   // chargement de la carte
   const carteDuNiveau = this.add.tilemap("carte6");
@@ -35,6 +42,7 @@ export default class niveau6 extends Phaser.Scene {
   ); 
   
   this.CalquedeTuiles1.setCollisionByProperty({ estSolide: true }); 
+  this.physics.add.collider(this.player, this.CalquedeTuiles1); 
 
 
       /*************************************
@@ -47,11 +55,6 @@ export default class niveau6 extends Phaser.Scene {
     groupe_plateformes = this.physics.add.staticGroup();
 
 
-    this.player = this.physics.add.sprite(10, 10, "img_perso");
-    this.player.refreshBody();
-    this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
-    this.clavier = this.input.keyboard.createCursorKeys();
 
     // la création d'un groupes permet de gérer simultanément les éléments d'une meme famille
     //  Le groupe groupe_plateformes contiendra le sol et deux platesformes sur lesquelles sauter
@@ -98,4 +101,5 @@ export default class niveau6 extends Phaser.Scene {
     }
   }
   
-  var groupe_plateformes
+var groupe_plateformes
+var player
