@@ -27,7 +27,7 @@ bouton_play1.setInteractive();
 bouton_play1.setVisible(false);
 bouton_play1.on("pointerup", () => {
 
-  this.scene.start("selection");
+  this.scene.switch("selection");
 
 });
 
@@ -92,7 +92,7 @@ var bouton_play = this.add.image(200, 950, "Réponse19").setDepth(1).setDisplayS
       color: '#191970' // Bleu marine foncé
     });
     
-    this.add.text(300, 850, "Combien comptez-vous de triangles ?", {
+    this.add.text(300, 200, "Combien comptez-vous de triangles ?", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
       fontSize: "22pt",
       color: '#191970' // Bleu marine foncé
