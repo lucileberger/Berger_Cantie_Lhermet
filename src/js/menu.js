@@ -19,7 +19,7 @@ export default class menu extends Phaser.Scene {
 
     this.load.image("menu_fond", "./src/assets/PhotoIntroduction.png");
     this.load.image("imageBoutonPlay", "./src/assets/Bouton_Play1.png");
-    this.load.audio("sonsword", "./src/assets/Introduction.mp3");
+    this.load.audio("musiqueme", "./src/assets/MusiqueMenu.mp3");
 
 
   }
@@ -27,8 +27,12 @@ export default class menu extends Phaser.Scene {
   create() {
 
 // ajout d'une musique
-let sonsword = this.sound.add("sonsword");
-    sonsword.play();
+this.game.config.musiqueme = this.sound.add("musiqueme");
+
+this.game.config.musiqueme.play();
+
+
+
 
 
     // on place les éléments de fond

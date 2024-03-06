@@ -8,29 +8,30 @@ export default class niveau8 extends Phaser.Scene {
     });
   }
   preload() {
-    this.load.image("RG1","src/assets/Violet.jpg")
-    this.load.image("RG5","src/assets/Rouge.jpg")
-    this.load.image("RG3","src/assets/Bleu.jpg")
-    this.load.image("RG2","src/assets/Vert.jpg")
+    this.load.image("LaFin","src/assets/ImageFin.jpg")
+    this.load.audio("sonfin", "./src/assets/Musiquefin.mp3");
     
    
   }
 
   create() {
+    
+    this.game.config.sonsword.stop();
+    
     fct.doNothing();
     fct.doAlsoNothing();
-    this.add.image(200, 400, "RG1");
-    this.add.image(300, 500, "RG5");
-    this.add.image(400, 600, "RG3");
-    this.add.image(500, 700, "RG2");
+    this.add.image(500, 500, "LaFin");
+    let sonsword = this.sound.add("sonfin");
+    sonsword.play();
+
    
 
     // ajout d'un texte distintcif  du niveau
-    this.add.text(250, 100, "Vous avez presque gagnez", {
+    this.add.text(350, 80, "FELICITATIONS", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
       fontSize: "60pt"
     });
-    this.add.text(60, 220, "Énoncé de l’énigme :\n \nTous au long de la partie vous avez trouvé dse carrées de Couleurs différentes.\nMaintenant tu dois avec ces carrées écrire le bon mots pour pouvoir sortir de ce manoir ", {
+    this.add.text(60, 120, "\nVous avez réussi toute les enigmes vous etes maintenant libre.", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });

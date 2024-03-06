@@ -47,11 +47,17 @@ export default class selection extends Phaser.Scene {
     // chargement tuiles de jeu
 this.load.image("Phaser_tuiles_de_jeu", "src/assets/Map3.png");
 this.load.tilemapTiledJSON("carte", "src/assets/MapFinal6.json"); 
+this.load.audio("sonsword", "./src/assets/Introduction.mp3");
 
 
 
   }
   create() {
+    this.game.config.musiqueme.stop();
+    
+    this.game.config.sonsword = this.sound.add("sonsword");
+
+this.game.config.sonsword.play();
     
     // chargement de la carte
 const carteDuNiveau = this.add.tilemap("carte");
@@ -98,8 +104,8 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
     this.porte2 = this.physics.add.staticSprite(60, 200, "img_porte2");
     this.porte3 = this.physics.add.staticSprite(700 , 90, "img_porte3");
     this.porte4 = this.physics.add.staticSprite(90, 850, "img_porte4");
-    this.porte5 = this.physics.add.staticSprite(330, 850, "img_porte5");
-    this.porte6 = this.physics.add.staticSprite(700, 850, "img_porte6");
+    this.porte5 = this.physics.add.staticSprite(950, 150, "img_porte5");
+    this.porte6 = this.physics.add.staticSprite(950, 850, "img_porte6");
     this.porte7 = this.physics.add.staticSprite(510, 465, "fin");
     //this.porte8 = this.physics.add.staticSprite(950, 150, "img_porte8");
     //this.porte9 = this.physics.add.staticSprite(950, 850, "img_porte9");

@@ -10,12 +10,19 @@ export default class niveau9 extends Phaser.Scene {
   preload() {
     this.load.image("perdu", "src/assets/GameOver.png");
     this.load.image("bouton", "src/assets/BoutonMenu.png");
+    this.load.audio("lose", "./src/assets/Bruh.mp3");
 
          
 }
 
   create() {
-    fct.doNothing();
+    this.game.config.sonsword.stop();
+    this.game.config.lose = this.sound.add("lose");
+
+this.game.config.lose.play();
+    
+
+fct.doNothing();
     fct.doAlsoNothing();
     this.add.image(500, 500, "perdu");
 

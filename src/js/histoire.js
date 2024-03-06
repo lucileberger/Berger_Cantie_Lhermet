@@ -104,17 +104,9 @@ export default class histoire extends Phaser.Scene {
       });
   
     }
-<<<<<<< HEAD
-    
-    
-  
-  }
-
-=======
 
    
 
 }
   
   
->>>>>>> 7fd5eee5d6eab923d5f7193792b0153d32fee62f
