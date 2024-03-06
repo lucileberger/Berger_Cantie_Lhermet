@@ -8,17 +8,81 @@ export default class niveau3 extends Phaser.Scene {
   }
   preload() {
     this.load.image("Horloge", "src/assets/Horaire.jpg");
-    this.load.image("Réponse1.2", "src/assets/10H39.jpg");
-    this.load.image("Réponse2.2", "src/assets/10H23.jpg");
-    this.load.image("Réponse3.2", "src/assets/5H50.jpg");
-    this.load.image("Réponse4.2", "src/assets/6H53.png");
-    this.load.image("RG3","src/assets/Bleu.jpg")
+    this.load.image("Réponse1", "src/assets/10H39.jpg");
+    this.load.image("Réponse2", "src/assets/10H23.jpg");
+    this.load.image("Réponse3", "src/assets/5H50.jpg");
+    this.load.image("Réponse4", "src/assets/6H53.png");
+    this.load.image("3bleu","src/assets/3bleu.png")
 
    
-  }
+  }  
 
   create() {
+
+    this.cameras.main.setBackgroundColor('#096A61');
+    
+    var bouton_play1 = this.add.image(800, 800, "3bleu").setDepth(1).setDisplaySize(55, 55);
+bouton_play1.setInteractive();
+bouton_play1.setVisible(false);
+bouton_play1.on("pointerup", () => {
+
+  this.scene.switch("selection");
+
+});
+
+var bouton_play = this.add.image(200, 950, "Réponse1").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        this.scene.start("niveau9");
+      
+      });
+
+
+
+      var bouton_play = this.add.image(400, 950, "Réponse2").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        this.scene.start("niveau9");
+      
+      });
+
+      var bouton_play = this.add.image(600, 950, "Réponse3").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        this.scene.start("niveau9");
+      
+      });
+
+      var bouton_play = this.add.image(800, 950, "Réponse4").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        bouton_play1.setVisible(true);      
+      });
    
+
+
+
+
+      
+    var bouton_play = this.add.image(200, 950, "Réponse1.2").setDepth(1).setDisplaySize(70, 70);
+    bouton_play.setInteractive();
+    var bouton_play = this.add.image(400, 950, "Réponse2.2").setDepth(1).setDisplaySize(70, 70);
+    bouton_play.setInteractive();
+    var bouton_play = this.add.image(600, 950, "Réponse3.2").setDepth(1).setDisplaySize(70, 70);
+    bouton_play.setInteractive();
+    var bouton_play = this.add.image(800, 950, "Réponse4.2").setDepth(1).setDisplaySize(70, 70);
+    bouton_play.setInteractive();
+    var bouton_play = this.add.image(900, 50, "RG3").setDepth(1).setDisplaySize(55, 55);
+        bouton_play.setInteractive();
+
+
+
+
+
   
     this.add.image(500, 600, "Horloge");
   
@@ -34,74 +98,24 @@ export default class niveau3 extends Phaser.Scene {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
       fontSize: "26pt"
     });
-    this.add.text(220, 830, "Quelle heure sera-t-il la prochaine fois que ces 4 chiffres seront à nouveau réunis?.", {
+    this.add.text(220, 300, "Quelle heure sera-t-il la prochaine fois que ces 4 chiffres seront à nouveau réunis?.", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
       fontSize: "22pt"
     });
     
+    this.add.text(60, 800, "A vous de résoudre cette énigme pour obtenir un indice :", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
+      fontSize: "30pt",
+     
+    });
     
     
-    this.porte7 = this.physics.add.staticSprite(200, 950, "img_porte1");
-    this.porte8 = this.physics.add.staticSprite(400, 950, "img_porte1");
-    this.porte9 = this.physics.add.staticSprite(600, 950, "img_porte1");
-    this.porte_retour = this.physics.add.staticSprite(800, 950, "img_porte3");
-
-
-
-
-    this.player = this.physics.add.sprite(100, 450, "img_perso");
-    this.player.refreshBody();
-    this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
-    this.clavier = this.input.keyboard.createCursorKeys();
-    this.physics.add.collider(this.player, this.groupe_plateformes);
-
-    var bouton_play = this.add.image(200, 950, "Réponse1.2").setDepth(1).setDisplaySize(70, 70);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(400, 950, "Réponse2.2").setDepth(1).setDisplaySize(70, 70);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(600, 950, "Réponse3.2").setDepth(1).setDisplaySize(70, 70);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(800, 950, "Réponse4.2").setDepth(1).setDisplaySize(70, 70);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(900, 50, "RG3").setDepth(1).setDisplaySize(55, 55);
-        bouton_play.setInteractive();
-
-
 
 
   }
 
   update() {
-    if (this.clavier.left.isDown) {
-      this.player.setVelocityX(-160);
-      this.player.anims.play("anim_tourne_gauche", true);
-    } else if (this.clavier.right.isDown) {
-      this.player.setVelocityX(160);
-      this.player.anims.play("anim_tourne_droite", true);
-    } else {
-      this.player.setVelocityX(0);
-      this.player.anims.play("anim_face");
-    }
-
-    // Mouvement vertical
-    if (this.clavier.up.isDown) {
-      this.player.setVelocityY(-330);
-    } else if (this.clavier.down.isDown) {
-      this.player.setVelocityY(330);
-    } else {
-      this.player.setVelocityY(0);
-    }
-
-    if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
-      if (this.physics.overlap(this.player, this.porte_retour))        
-        this.scene.switch("selection");
-       if (this.physics.overlap(this.player, this.porte9))
-        this.scene.switch("niveau9");
-        if (this.physics.overlap(this.player, this.porte7))
-        this.scene.switch("niveau9");
-        if (this.physics.overlap(this.player, this.porte8))
-        this.scene.switch("niveau9");
+   
     }
   }
-}
+

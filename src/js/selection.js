@@ -169,7 +169,7 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
     this.calque_plateformes.setPipeline( 'Light2D');
     imgcarte.setPipeline( 'Light2D');
   
-    light = this.lights.addLight(600, 300, 300);
+    light = this.lights.addLight(600, 300, 150);
     console.log()
     light.setIntensity(2);
     this.lights.enable().setAmbientColor(0x000000);
