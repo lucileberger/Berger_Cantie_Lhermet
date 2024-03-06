@@ -18,7 +18,7 @@ export default class menu extends Phaser.Scene {
   preload() {
 
     this.load.image("menu_fond", "./src/assets/PhotoIntroduction.png");
-    this.load.image("imageBoutonPlay", "./src/assets/Bouton_Play1.png");
+    this.load.image("imageBoutonPlay", "./src/assets/Bouton_Play.png");
     this.load.audio("musiqueme", "./src/assets/MusiqueMenu.mp3");
 
 
@@ -51,7 +51,7 @@ this.game.config.musiqueme.play();
 
     //on ajoute un bouton de clic, nommé bouton_play
 
-    var bouton_play = this.add.image(500, 585, "imageBoutonPlay").setDepth(1).setDisplaySize(70, 60);
+    var bouton_play = this.add.image(500, 540, "imageBoutonPlay").setDepth(1).setDisplaySize(200, 100);
 
     //=========================================================
 

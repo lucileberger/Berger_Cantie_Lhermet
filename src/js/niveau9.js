@@ -36,9 +36,6 @@ export default class niveau9 extends Phaser.Scene {
 
 this.game.config.lose.play();
     
-
-fct.doNothing();
-    fct.doAlsoNothing();
     this.add.image(500, 500, "perdu");
 
    // on place les éléments de fond

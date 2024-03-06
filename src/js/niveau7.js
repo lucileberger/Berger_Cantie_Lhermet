@@ -27,10 +27,17 @@ export default class niveau7 extends Phaser.Scene {
     fct.doAlsoNothing();
     
 
+    
  // Initialisation du tableau pour suivre l'ordre des boutons pressés
  let ordreDesBoutonsPresses = [];
  let ordreCorrect = [1,5,4,3,2,7];
  let self = this;
+
+ this.infoText = this.add.text(400, 400, '', {
+    fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
+    fontSize: "22pt",
+    color: "#ffffff" // Assurez-vous que la couleur du texte contraste bien avec le fond.
+});
   
 
  // Fonction pour vérifier l'ordre des boutons pressés
@@ -41,9 +48,11 @@ export default class niveau7 extends Phaser.Scene {
      if (ordreDesBoutonsPresses.length === ordreCorrect.length) {
          for (let i = 0; i < ordreCorrect.length; i++) {
              if (ordreDesBoutonsPresses[i] !== ordreCorrect[i]) {
-                 console.log("Ordre incorrect." + ordreDesBoutonsPresses);
+                console.log("Ordre incorrect." + ordreDesBoutonsPresses);
                  console.log("Ordre attebdu." + ordreCorrect);
-
+                 this.infoText.setText("Combinaison Incorret"+ ordreDesBoutonsPresses);
+                 
+                    
                  ordreDesBoutonsPresses = []; // Réinitialise si l'ordre est incorrect
                  return;
              }
@@ -58,45 +67,45 @@ export default class niveau7 extends Phaser.Scene {
  // Configuration des boutons
  var bouton_play1 = this.add.image(300, 500, "RG1").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play1.on('pointerdown', function () {
-     verifierOrdre(1);
- });
+     verifierOrdre.call(this,1);
+ }, this);
  var bouton_play2 = this.add.image(300, 600, "RG2").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play2.on('pointerdown', function () {
-     verifierOrdre(2);
- });
+     verifierOrdre.call(this,2);
+ },this);
  var bouton_play3 = this.add.image(300, 700, "RG3").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play3.on('pointerdown', function () {
-     verifierOrdre(3);
- });
+     verifierOrdre.call(this,3);
+ },this);
  var bouton_play4 = this.add.image(300, 800, "RG4").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play4.on('pointerdown', function () {
-     verifierOrdre(4);
- });
+     verifierOrdre.call(this,4);
+ },this);
  var bouton_play5 = this.add.image(300, 900, "RG5").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play5.on('pointerdown', function () {
-     verifierOrdre(5);
- });
+     verifierOrdre.call(this,5);
+ },this);
  var bouton_play6 = this.add.image(700, 500, "RG6").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play6.on('pointerdown', function () {
-     verifierOrdre(6);
- });
+     verifierOrdre.call(this,6);
+ },this);
  var bouton_play7 = this.add.image(700, 600, "RG7").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play7.on('pointerdown', function () {
-     verifierOrdre(7);
- });
+     verifierOrdre.call(this,7);
+ },this);
  var bouton_play8 = this.add.image(700, 700, "RG8").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play8.on('pointerdown', function () {
-     verifierOrdre(8);
- });
+     verifierOrdre.call(this,8);
+ },this);
  var bouton_play9 = this.add.image(700, 800, "RG9").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play9.on('pointerdown', function () {
-     verifierOrdre(9);
- });
+     verifierOrdre.call(this,9);
+ },this);
  var bouton_play10 = this.add.image(700, 900, "RG10").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play10.on('pointerdown', function () {
-     verifierOrdre(10);
+     verifierOrdre.call(this,10);
 
- });
+ },this);
  
 
  bouton_play1.on("pointerdown", () => {
@@ -105,16 +114,114 @@ export default class niveau7 extends Phaser.Scene {
   
     });
 
-    bouton_play1.on("pointerdown", () => {
+bouton_play1.on("pointerup", () => {
 
-        bouton_play1.clearTint(); // Réinitialise la teinte du bouton
+bouton_play1.clearTint(); // Réinitialise la teinte du bouton
       
         });
+bouton_play2.on("pointerdown", () => {
+
+bouton_play2.setTint(0x00FF00); // Change la teinte du bouton
+          
+            });
+        
+bouton_play2.on("pointerup", () => {
+        
+bouton_play2.clearTint(); // Réinitialise la teinte du bouton
+              
+                });
+
+ bouton_play3.on("pointerdown", () => {
+
+                    bouton_play3.setTint(0x00FF00); // Change la teinte du bouton
+                  
+                    });
+                
+                    bouton_play3.on("pointerup", () => {
+                
+                        bouton_play3.clearTint(); // Réinitialise la teinte du bouton
+                      
+                        });
+
+    bouton_play4.on("pointerdown", () => {
+
+                            bouton_play4.setTint(0x00FF00); // Change la teinte du bouton
+                          
+                            });
+                        
+                            bouton_play4.on("pointerup", () => {
+                        
+                                bouton_play4.clearTint(); // Réinitialise la teinte du bouton
+                              
+                                });
 
 
+                                bouton_play5.on("pointerdown", () => {
 
+                                    bouton_play5.setTint(0x00FF00); // Change la teinte du bouton
+                                  
+                                    });
+                                
+                                    bouton_play5.on("pointerup", () => {
+                                
+                                        bouton_play5.clearTint(); // Réinitialise la teinte du bouton
+                                      
+                                        });
+                                        bouton_play6.on("pointerdown", () => {
 
+                                            bouton_play6.setTint(0x00FF00); // Change la teinte du bouton
+                                          
+                                            });
+                                        
+                                            bouton_play6.on("pointerup", () => {
+                                        
+                                                bouton_play6.clearTint(); // Réinitialise la teinte du bouton
+                                              
+                                                });
+                                                bouton_play7.on("pointerdown", () => {
 
+                                                    bouton_play7.setTint(0x00FF00); // Change la teinte du bouton
+                                                  
+                                                    });
+                                                
+                                                    bouton_play7.on("pointerup", () => {
+                                                
+                                                        bouton_play7.clearTint(); // Réinitialise la teinte du bouton
+                                                      
+                                                        });
+                                                        bouton_play8.on("pointerdown", () => {
+
+                                                            bouton_play8.setTint(0x00FF00); // Change la teinte du bouton
+                                                          
+                                                            });
+                                                        
+                                                            bouton_play8.on("pointerup", () => {
+                                                        
+                                                                bouton_play8.clearTint(); // Réinitialise la teinte du bouton
+                                                              
+                                                                });
+                                                                bouton_play9.on("pointerdown", () => {
+
+                                                                    bouton_play9.setTint(0x00FF00); // Change la teinte du bouton
+                                                                  
+                                                                    });
+                                                                
+                                                                    bouton_play9.on("pointerup", () => {
+                                                                
+                                                                        bouton_play9.clearTint(); // Réinitialise la teinte du bouton
+                                                                      
+                                                                        });
+                                                                        bouton_play10.on("pointerdown", () => {
+
+                                                                            bouton_play10.setTint(0x00FF00); // Change la teinte du bouton
+                                                                          
+                                                                            });
+                                                                        
+                                                                            bouton_play10.on("pointerup", () => {
+                                                                        
+                                                                                bouton_play10.clearTint(); // Réinitialise la teinte du bouton
+                                                                              
+                                                                                });
         
 
     // ajout d'un texte distintcif  du niveau
