@@ -81,7 +81,7 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
 
     // On ajoute une simple image de fond, le ciel, au centre de la zone affichée (400, 300)
     // Par défaut le point d'ancrage d'une image est le centre de cette derniere
-    this.add.image(500, 470, "Map");
+    var imgcarte =this.add.image(500, 470, "Map");
 
     // la création d'un groupes permet de gérer simultanément les éléments d'une meme famille
     //  Le groupe groupe_plateformes contiendra le sol et deux platesformes sur lesquelles sauter
@@ -167,11 +167,12 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
      ******************************************************/
     player.setPipeline( 'Light2D');
     this.calque_plateformes.setPipeline( 'Light2D');
+    imgcarte.setPipeline( 'Light2D');
   
     light = this.lights.addLight(600, 300, 300);
     console.log()
     light.setIntensity(2);
-    this.lights.enable().setAmbientColor(0xFFFFFF);
+    this.lights.enable().setAmbientColor(0x000000);
 
    
   }

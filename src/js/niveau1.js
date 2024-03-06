@@ -14,11 +14,12 @@ export default class niveau1 extends Phaser.Scene {
     this.load.image("Réponse2.1", "src/assets/Chiffre15.png");
     this.load.image("Réponse3.1", "src/assets/Chiffre23.png");
     this.load.image("Réponse4.1", "src/assets/Chiffre27.png");
-    this.load.image("RG1","src/assets/Violet.jpg")
+    this.load.image("RG1","src/assets/Violet.png")
 
   }
 
   create() {
+    this.cameras.main.setBackgroundColor('#ff0000');
     fct.doNothing();
     fct.doAlsoNothing();
     this.add.image(500, 500, "Les_triangles_cachés");
@@ -26,20 +27,24 @@ export default class niveau1 extends Phaser.Scene {
     
 
     // ajout d'un texte distintcif  du niveau
-    this.add.text(250, 100, "Les triangles cachés", {
+    this.add.text(250, 100, "Les triangles cachés : ", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
-      fontSize: "60pt"
+      fontSize: "60pt",
+      color: '#191970' // Bleu marine foncé
     });
-
-    this.add.text(60, 800, "A vous de résoudre cette nouvelle énigme pour obtenir un nouvel indice:", {
+    
+    this.add.text(60, 800, "A vous de résoudre cette énigme pour obtenir un indice :", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
-      fontSize: "30pt"
+      fontSize: "30pt",
+      color: '#191970' // Bleu marine foncé
     });
-
-    this.add.text(300, 850, "Combien comptez vous de triangles ?", {
+    
+    this.add.text(300, 850, "Combien comptez-vous de triangles ?", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
-      fontSize: "22pt"
+      fontSize: "22pt",
+      color: '#191970' // Bleu marine foncé
     });
+    
 
 
     this.porte7 = this.physics.add.staticSprite(200, 950, "img_porte1");
