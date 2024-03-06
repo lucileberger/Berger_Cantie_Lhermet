@@ -242,7 +242,8 @@ light.y =player.y;
     }
 
     if (Phaser.Input.Keyboard.JustDown(clavier.space) == true) {
-      if (this.physics.overlap(player, this.porte1)){ this.scene.switch("niveau1");
+      if (this.physics.overlap(player, this.porte1)){ 
+        this.scene.switch("niveau1");
       this.porte1.disableBody(true,true);}
         
 

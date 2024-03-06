@@ -10,26 +10,79 @@ export default class niveau1 extends Phaser.Scene {
   preload() {
     this.load.image("Les_triangles_cachés", "src/assets/Les_triangles_cachés.png");
        
-    this.load.image("Réponse1.1", "src/assets/19.png");
-    this.load.image("Réponse2.1", "src/assets/Chiffre15.png");
-    this.load.image("Réponse3.1", "src/assets/Chiffre23.png");
-    this.load.image("Réponse4.1", "src/assets/Chiffre27.png");
-    this.load.image("RG1","src/assets/Violet.png")
-
+    this.load.image("Réponse19", "src/assets/19.png");
+    this.load.image("Réponse15", "src/assets/Chiffre15.png");
+    this.load.image("Réponse23", "src/assets/Chiffre23.png");
+    this.load.image("Réponse27", "src/assets/Chiffre27.png");
+    this.load.image("Lestrianglescaches", "src/assets/Lestrianglescaches.png");
+    this.load.image("1violet","src/assets/1violet.png")
+    
   }
 
   create() {
-    this.cameras.main.setBackgroundColor('#ff0000');
-    fct.doNothing();
-    fct.doAlsoNothing();
-    this.add.image(500, 500, "Les_triangles_cachés");
+// pour les bouttons 
+
+var bouton_play1 = this.add.image(800, 800, "1violet").setDepth(1).setDisplaySize(55, 55);
+bouton_play1.setInteractive();
+bouton_play1.setVisible(false);
+bouton_play1.on("pointerup", () => {
+
+  this.scene.start("selection");
+
+});
+
+var bouton_play = this.add.image(200, 950, "Réponse19").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        bouton_play1.setVisible(true);
+      
+      });
+
+
+
+      var bouton_play = this.add.image(400, 950, "Réponse15").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        this.scene.start("niveau9");
+      
+      });
+
+      var bouton_play = this.add.image(600, 950, "Réponse23").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        this.scene.start("niveau9");
+      
+      });
+
+      var bouton_play = this.add.image(800, 950, "Réponse27").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        this.scene.start("niveau9");
+      
+      });
+
+      
 
     
 
+
+
+
+
+
+
+    this.cameras.main.setBackgroundColor('#f5f5dc');
+    this.add.image(500, 500, "Lestrianglescaches");
+
+  
     // ajout d'un texte distintcif  du niveau
     this.add.text(250, 100, "Les triangles cachés : ", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
-      fontSize: "60pt",
+      fontSize: "65pt",
       color: '#191970' // Bleu marine foncé
     });
     
@@ -47,10 +100,7 @@ export default class niveau1 extends Phaser.Scene {
     
 
 
-    this.porte7 = this.physics.add.staticSprite(200, 950, "img_porte1");
-    this.porte8 = this.physics.add.staticSprite(400, 950, "img_porte1");
-    this.porte9 = this.physics.add.staticSprite(600, 950, "img_porte1");
-    this.porte_retour = this.physics.add.staticSprite(800, 950, "img_porte1");
+    
 
 
     this.player = this.physics.add.sprite(100, 450, "img_perso");
@@ -59,17 +109,6 @@ export default class niveau1 extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
     this.clavier = this.input.keyboard.createCursorKeys();
     this.physics.add.collider(this.player, this.groupe_plateformes);
-
-    var bouton_play = this.add.image(200, 950, "Réponse1.1").setDepth(1).setDisplaySize(55, 55);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(400, 950, "Réponse2.1").setDepth(1).setDisplaySize(55, 55);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(600, 950, "Réponse3.1").setDepth(1).setDisplaySize(55, 55);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(800, 950, "Réponse4.1").setDepth(1).setDisplaySize(55, 55);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(900, 50, "RG1").setDepth(1).setDisplaySize(55, 55);
-        bouton_play.setInteractive();
 
 
   }
