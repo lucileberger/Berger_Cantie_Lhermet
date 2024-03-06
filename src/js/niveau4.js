@@ -23,13 +23,13 @@ export default class niveau4 extends Phaser.Scene {
     this.load.image("img_etoile", "src/assets/bouledepapierokk.png"); 
     this.load.image("img_bombe", "src/assets/BouledePapier4.png"); 
     this.load.image("img_plateforme2", "src/assets/platformeok.png");
-    this.load.image("img_reussite", "src/assets/Parchemin.png"); 
+    this.load.image("come2", "src/assets/Parchemin.png"); 
  
 
   
     this.load.spritesheet("img_perso", "src/assets/dude.png", {
-      frameWidth: 32,
-      frameHeight: 48
+      frameWidth: 70,
+      frameHeight: 100
     }); 
   
     this.load.image("img_etoile", "src/assets/bouledepapier.jpg");
@@ -78,8 +78,8 @@ create() {
   groupe_etoiles = this.physics.add.group(); 
   // on rajoute 10 étoiles avec une boucle for :
   // on répartit les ajouts d'étoiles tous les 70 pixels sur l'axe des x
-  for (var i = 0; i < 10; i++) {
-    var coordX = 85 + 85 * i;
+  for (var i = 0; i < 6; i++) {
+    var coordX = 130 + 130 * i;
     groupe_etoiles.create(coordX, 10, "img_etoile");
   } 
   this.physics.add.collider(groupe_etoiles, groupe_plateformes); 
@@ -92,12 +92,28 @@ create() {
 
   zone_texte_score = this.add.text(50, 170, 'score: 0', { fontSize: '64px', fill: '#fff', fontFamily: 'Arial, sans-serif'}); 
 
+  bouton_play = this.add.image(920, 960, "come2").setDepth(1).setDisplaySize(50, 50);
+  bouton_play.setInteractive();
+  bouton_play.setVisible(false); 
+
  groupe_bombes = this.physics.add.group(); 
  this.physics.add.collider(groupe_bombes, groupe_plateformes); 
  this.physics.add.collider(player, groupe_bombes, chocAvecBombe, null, this); 
+ this.clavier = this.input.keyboard.createCursorKeys();
 
  
 
+ bouton_play.on("pointerup", () => {
+  
+  this.scene.start("selection");
+  
+  this.sonsword.stop()
+  
+})
+
+if (score >= 200) {
+  bouton_play.setVisible(true);
+}
  
 } 
 
@@ -119,9 +135,15 @@ update() {
     player.setVelocityY(-330);
 
     if (gameOver) {
-      return;
+          this.scene.switch("niveau9");;
     }} 
-    
+   
+    ;
+
+
+    if (score >= 200) {
+      bouton_play.setVisible(true);
+    }
 
 }
 }
@@ -156,6 +178,10 @@ if (groupe_etoiles.countActive(true) === 0) {
  //  on ajoute 10 points au score total, on met à jour l'affichage
  score += 10;
  zone_texte_score.setText("Score: " + score); 
+
+ if (score >= 200) {
+    bouton_play.setVisible(true);
+  }
   } 
 
   function chocAvecBombe(un_player, une_bombe) {
@@ -173,3 +199,4 @@ var score = 0;
 var zone_texte_score; 
 var groupe_bombes; 
 var gameOver = false;
+var bouton_play

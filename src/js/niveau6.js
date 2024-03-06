@@ -1,31 +1,69 @@
 export default class niveau6 extends Phaser.Scene {
-    // constructeur de la classe
-    constructor() {
+
+  constructor() {
       super({
         key: "niveau6" //  ici on précise le nom de la classe en tant qu'identifiant
       });
     }
-    preload() {}
+    preload() {
+  
+      this.load.image("Map", "src/assets/Tileset.png");
+  
+  
+      // chargement tuiles de jeu
+  this.load.image("Phaser_tuilesdejeu2", "src/assets/Tileset.png");
+  
+  // chargement de la carte
+  this.load.tilemapTiledJSON("carte6", "src/assets/cartelabyrhinte2.json");  
+  
+    }
   
     create() {
-      this.add.image(400, 300, "img_ciel");
-      this.groupe_plateformes = this.physics.add.staticGroup();
-      this.groupe_plateformes.create(200, 584, "img_plateforme");
-      this.groupe_plateformes.create(600, 584, "img_plateforme");
-      // ajout d'un texte distintcif  du niveau
-      this.add.text(400, 100, "Vous êtes dans le niveau 6", {
-        fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif',
-        fontSize: "22pt"
-      });
   
-      this.porte_retour = this.physics.add.staticSprite(100, 550, "img_porte6");
+  // chargement de la carte
+  const carteDuNiveau = this.add.tilemap("carte6");
+  const tileset = carteDuNiveau.addTilesetImage(
+       "Tileset",
+       "Phaser_tuilesdejeu2"
+     );  
+  // chargement du calque calque_plateformes
+  this.CalquedeTuiles1 = carteDuNiveau.createLayer(
+  "CalquedeTuiles1",
+  tileset
+  ); 
   
-      this.player = this.physics.add.sprite(100, 450, "img_perso");
-      this.player.refreshBody();
-      this.player.setBounce(0.2);
-      this.player.setCollideWorldBounds(true);
-      this.clavier = this.input.keyboard.createCursorKeys();
-      this.physics.add.collider(this.player, this.groupe_plateformes);
+  this.CalquedeTuiles1.setCollisionByProperty({ estSolide: true }); 
+
+
+      /*************************************
+     *  CREATION DU MONDE + PLATEFORMES  *
+     *************************************/
+  
+    // On ajoute une simple image de fond, le ciel, au centre de la zone affichée (400, 300)
+    // Par défaut le point d'ancrage d'une image est le centre de cette derniere
+    this.add.image(500, 800, "carte6");
+    groupe_plateformes = this.physics.add.staticGroup();
+
+
+    this.player = this.physics.add.sprite(10, 10, "img_perso");
+    this.player.refreshBody();
+    this.player.setBounce(0.2);
+    this.player.setCollideWorldBounds(true);
+    this.clavier = this.input.keyboard.createCursorKeys();
+
+    // la création d'un groupes permet de gérer simultanément les éléments d'une meme famille
+    //  Le groupe groupe_plateformes contiendra le sol et deux platesformes sur lesquelles sauter
+    // notez le mot clé "staticGroup" : le static indique que ces élements sont fixes : pas de gravite,
+    // ni de possibilité de les pousser.
+  //  groupe_plateformes = this.physics.add.staticGroup();
+    // une fois le groupe créé, on va créer les platesformes , le sol, et les ajouter au groupe groupe_plateformes
+  
+    // l'image img_plateforme fait 400x32. On en met 2 à coté pour faire le sol
+    // la méthode create permet de créer et d'ajouter automatiquement des objets à un groupe
+    // on précise 2 parametres : chaque coordonnées et la texture de l'objet, et "voila!"
+  
+    //  on ajoute 3 platesformes flottantes
+  
     }
   
     update() {
@@ -58,3 +96,4 @@ export default class niveau6 extends Phaser.Scene {
     }
   }
   
+  var groupe_plateformes

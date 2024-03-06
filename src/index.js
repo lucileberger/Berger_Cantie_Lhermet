@@ -16,7 +16,7 @@ import niveau7 from "/src/js/niveau7.js";
 import niveau8 from "/src/js/niveau8.js";
 import niveau9 from "/src/js/niveau9.js";
 import niveau10 from "/src/js/niveau10.js";
-impport Rules from "/src/js/Rules.js";
+import Rules from "/src/js/Rules.js";
 import menu from "/src/js/menu.js";
 
 
@@ -41,7 +41,7 @@ var config = {
       gravity: {
         y: 0 // gravité verticale : acceleration ddes corps en pixels par seconde
       },
-      debug: true // permet de voir les hitbox et les vecteurs d'acceleration quand mis à true
+      debug: false // permet de voir les hitbox et les vecteurs d'acceleration quand mis à true
     }
   },
   scene: [menu,histoire,Rules,selection,niveau1, niveau2, niveau3,niveau4,niveau5,niveau6,niveau7,niveau8,niveau9]
