@@ -93,7 +93,7 @@ export default class histoire extends Phaser.Scene {
   
         this.scene.start("selection");
         
-        this.sonsword.stop()
+        //this.sonsword.stop()
       });
 
       
@@ -104,9 +104,14 @@ export default class histoire extends Phaser.Scene {
       });
   
     }
+    
+    
+  
+  }
+
 
    
 
-}
+
   
   
