@@ -11,11 +11,11 @@
 
 // configuration générale du jeu
 
-export default class histoire extends Phaser.Scene {
+export default class Rules extends Phaser.Scene {
 
     constructor() {
   
-      super({ key: "histoire" });
+      super({ key: "Rules" });
   
     }
   
@@ -23,10 +23,9 @@ export default class histoire extends Phaser.Scene {
   
     preload() {
   
-        this.load.image("histoire", "./src/assets/parch.jpg");
+    this.load.image("histoire", "./src/assets/parch.jpg");
   
       this.load.image("come", "./src/assets/come.png");
-      this.load.image("rules", "./src/assets/rules.png");
       this.load.audio("sonsword", "./src/assets/Introduction.mp3");
   
     }
@@ -48,18 +47,18 @@ export default class histoire extends Phaser.Scene {
       //on ajoute un bouton de clic, nommé bouton_play
   
       var bouton_play = this.add.image(350, 750, "come").setDepth(1).setDisplaySize(150, 140);
-      var bouton_play2 = this.add.image(700, 750, "rules").setDepth(2).setDisplaySize(160, 150);
+      
   
       // Texte à ajouter en blanc gris avec la police Chiller en gras
   
-      var texte = this.add.text(220, 150, "Au cœur d'une forêt dense se dresse un manoir abandonné. \n\nSelon la légende, ce manoir renferme d'innombrables secrets \net énigmes anciennes, gardées par un esprit mystérieux. \nLes rumeurs disent que quiconque parvient à résoudre \ntoutes les énigmes du manoir et par conséquent \n libérer l’esprit du château sera récompensé \npar un trésor légendaire. \nAttention, si vous échouez, vous y serez piégé pour l'éternité...\n\nVous incarnez un aventurier courageux qui décide de relever\n le défi et de percer les mystères du manoir.", { font: "bold 24px Papyrus", fill: "#EDE9CE" }).setDepth(1);
+      var texte = this.add.text(220, 150, " Voici les règles du jeu : \n\n Le joueur explore le manoir à la recherche de 6 parchemins. \nLorsqu'il trouve un parchemin, il doit résoudre l'énigme associée pour progresser. \nChaque énigme résolue lui donne un indice pour identifier le nom du tueur. \nAttention, une mauvaise réponse met fin au jeu.\nUne fois les 6 parchemins récupérés, le joueur doit se rendre \nau centre de la carte, dans l'espace bleu, pour ouvrir le coffre \net découvrir l'identité du criminel. \nLe joueur sera récompensé d'un trésor s'il réussit à terminer la quête.", { font: "bold 24px Papyrus", fill: "#EDE9CE" }).setDepth(1);
   
       //=========================================================
   
       //on rend le bouton interratif
   
       bouton_play.setInteractive();
-      bouton_play2.setInteractive();
+      
   
    
   
@@ -87,7 +86,7 @@ export default class histoire extends Phaser.Scene {
 
       
   
-      // on lance le niveau 1 ou les règles
+      // on lance le niveau 1
   
       bouton_play.on("pointerup", () => {
   
@@ -97,12 +96,6 @@ export default class histoire extends Phaser.Scene {
       });
 
       
-      bouton_play2.on("pointerup", () => {
-  
-        this.scene.start("Rules");
-       
-      });
-  
     }
 
    
