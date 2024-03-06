@@ -18,7 +18,7 @@ export default class niveau4 extends Phaser.Scene {
   }// chargement des librairies
 
   preload() {
-    this.load.image("img_ciel", "src/assets/fondenigmeattraperindice.png");
+    this.load.image("img_ciel", "src/assets/plateformeOk.jpg");
     this.load.image("img_plateforme", "src/assets/plateformeOk.jpg");
     this.load.image("img_etoile", "src/assets/bouledepapierokk.png"); 
     this.load.image("img_bombe", "src/assets/BouledePapier4.png"); 
@@ -36,11 +36,22 @@ export default class niveau4 extends Phaser.Scene {
 } 
 
 create() {
-  this.add.image(500, 600, "img_ciel");
+
+  
+this.add.text(50, 70, "Afin de sortir de cette salle : \n \nVous devez récupérer assez de boule de papier pour que le parchemin de sorti apparaisse.", {
+  fontFamily: 'Arial, "Goudy Bookletter 1911", bold, Times, serif',
+  fontSize: "15pt"
+      });
+
+  this.add.image(500, 800, "img_ciel");
   groupe_plateformes = this.physics.add.staticGroup();
   groupe_plateformes.create(200, 1400, "img_plateforme");
   groupe_plateformes.create(50, 644, "img_plateforme2");
   groupe_plateformes.create(1000, 784, "img_plateforme2");
+  groupe_plateformes.create(800, 947, "img_plateforme2");
+  groupe_plateformes.create(60, 947, "img_plateforme2");
+
+
 
   
   this.load.spritesheet("img_perso", "src/assets/dude.png", {
@@ -92,7 +103,7 @@ create() {
 
   zone_texte_score = this.add.text(50, 170, 'score: 0', { fontSize: '64px', fill: '#fff', fontFamily: 'Arial, sans-serif'}); 
 
-  bouton_play = this.add.image(920, 960, "come2").setDepth(1).setDisplaySize(50, 50);
+  bouton_play = this.add.image(920, 870, "come2").setDepth(1).setDisplaySize(50, 50);
   bouton_play.setInteractive();
   bouton_play.setVisible(false); 
 

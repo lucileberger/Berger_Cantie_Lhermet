@@ -51,8 +51,7 @@ export default class Rules extends Phaser.Scene {
   
       // Texte à ajouter en blanc gris avec la police Chiller en gras
   
-      var texte = this.add.text(230, 150, "        Voici les règles du jeu : \n\n Le joueur explore le manoir à la recherche de 6 parchemins. \nLorsqu'il trouve un parchemin, il doit résoudre l'énigme associée pour progresser. \nChaque énigme résolue lui donne un indice pour identifier le nom du tueur. \nAttention, une mauvaise réponse met fin au jeu.\nUne fois les 6 parchemins récupérés, le joueur doit se rendre \nau centre de la carte, dans l'espace bleu, pour ouvrir le coffre \net découvrir l'identité du criminel. \nLe joueur sera récompensé d'un trésor s'il réussit à terminer la quête.", { font: "bold 24px Papyrus", fill: "#EDE9CE" }).setDepth(1);
-  
+      var texte=this.add.text(220,150, " Regles du jeu : \n\n 1) Déplacez-vous sur le plateau de jeu afin de repérer les parchemins. \n2) Choissisez-en un et cliquez sur la barre espace. \n3) Vous arriverez sur une énigme ou un mini-jeu que vous devez résoudre\nafin de pourvoir sortir de la pièce. \n\n!  Pour obtenir tous les indices, vous devrez résoudre toutes les énigmes ! \n\n4) Regardez bien le carré de couleur afin de mémoriser sa couleur et\nle numéro apposé dessus. \n5) Une fois avoir récolté les 6 indices, dirigez-vous dans la pièce centrale\net cliquez sur le coffre \n6) A l'intérieur il vous faudra reconstituer le mot code grâce aux indices trouvés \n\n ATTENTION vous n'avez qu'une seule tentative afin de trouver le meutrier ", { font: "bold 19px Papyrus", fill: "#EDE9CE" }).setDepth(1);
       //=========================================================
   
       //on rend le bouton interratif

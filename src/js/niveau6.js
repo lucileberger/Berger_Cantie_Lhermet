@@ -10,17 +10,28 @@ export default class niveau6 extends Phaser.Scene {
     preload() {
   
       this.load.image("Map", "src/assets/Tileset.png");
-  
+      this.load.spritesheet("img_perso", "src/assets/perso2new.png", {
+        frameWidth: 25.5,
+        frameHeight: 50,
+      });
   
       // chargement tuiles de jeu
   this.load.image("Phaser_tuilesdejeu2", "src/assets/Tileset.png");
   
   // chargement de la carte
-  this.load.tilemapTiledJSON("carte6", "src/assets/cartelabyrhinte2.json");  
-  
+  this.load.tilemapTiledJSON("carte6", "src/assets/cartelabyrhinte4.json");  
+
+
     }
   
+
     create() {
+
+     
+     
+this.add.image(500, 800, "carte6");
+
+
   
   // chargement de la carte
   const carteDuNiveau = this.add.tilemap("carte6");
@@ -34,7 +45,7 @@ export default class niveau6 extends Phaser.Scene {
   tileset
   ); 
   
-  this.CalquedeTuiles1.setCollisionByProperty({ estSolide: true }); 
+
 
 
       /*************************************
@@ -43,9 +54,7 @@ export default class niveau6 extends Phaser.Scene {
   
     // On ajoute une simple image de fond, le ciel, au centre de la zone affichée (400, 300)
     // Par défaut le point d'ancrage d'une image est le centre de cette derniere
-    this.add.image(500, 800, "carte6");
     groupe_plateformes = this.physics.add.staticGroup();
-
 
     this.player = this.physics.add.sprite(10, 10, "img_perso");
     this.player.refreshBody();
@@ -53,6 +62,10 @@ export default class niveau6 extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
     this.clavier = this.input.keyboard.createCursorKeys();
 
+    this.porte_retour = this.physics.add.staticSprite(1700, 40, "img_porte1");
+
+    this.CalquedeTuiles1.setCollisionByProperty({ estSolide: true }); 
+    this.physics.add.collider(this.player, this.CalquedeTuiles1); 
     // la création d'un groupes permet de gérer simultanément les éléments d'une meme famille
     //  Le groupe groupe_plateformes contiendra le sol et deux platesformes sur lesquelles sauter
     // notez le mot clé "staticGroup" : le static indique que ces élements sont fixes : pas de gravite,
@@ -66,6 +79,12 @@ export default class niveau6 extends Phaser.Scene {
   
     //  on ajoute 3 platesformes flottantes
   
+    this.physics.world.setBounds(0, 0, 3200, 640);
+    //  ajout du champs de la caméra de taille identique à celle du monde
+    this.cameras.main.setBounds(0, 0, 3200, 640);
+    this.cameras.main.startFollow(this.player)
+
+
     }
   
     update() {
@@ -95,7 +114,14 @@ export default class niveau6 extends Phaser.Scene {
           this.scene.switch("selection");
         }
       }
+
+      this.cameras.main.startFollow(this.player);
+      this.cameras.main.setZoom(4);
+
+      if (this.physics.overlap(this.player, this.porte_retour))        
+      this.scene.switch("selection");
     }
   }
   
-  var groupe_plateformes
+var groupe_plateformes
+var player

@@ -11,7 +11,7 @@ export default class niveau2 extends Phaser.Scene {
     this.load.image("Réponse2", "src/assets/Chiffre15.png");
     this.load.image("Réponse3", "src/assets/4.png");
     this.load.image("Réponse4", "src/assets/2.png");
-    this.load.image("RG2","src/assets/Vert.jpg")
+    this.load.image("2vert","src/assets/2vert.png")
 
    
   }
@@ -34,15 +34,62 @@ export default class niveau2 extends Phaser.Scene {
       fontSize: "26pt"
     });
 
+    this.add.text(60, 800, "A vous de résoudre cette énigme pour obtenir un indice :", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
+      fontSize: "30pt",
+     
+    });
+
     this.add.text(270, 830, "Quel est le plus grand résultat que l’on peut obtenir ?", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
       fontSize: "22pt"
     });
 
-    this.porte7 = this.physics.add.staticSprite(400, 950, "img_porte1");
-    this.porte8 = this.physics.add.staticSprite(800, 950, "img_porte1");
-    this.porte9 = this.physics.add.staticSprite(600, 950, "img_porte1");
-    this.porte_retour = this.physics.add.staticSprite(200, 950, "img_porte1");
+    
+
+    var bouton_play1 = this.add.image(800, 815, "2vert").setDepth(1).setDisplaySize(55, 55);
+bouton_play1.setInteractive();
+bouton_play1.setVisible(false);
+bouton_play1.on("pointerup", () => {
+
+  this.scene.switch("selection");
+
+});
+
+    var bouton_play = this.add.image(200, 950, "Réponse1").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        bouton_play1.setVisible(true);
+      
+      });
+
+
+
+      var bouton_play = this.add.image(400, 950, "Réponse2").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        this.scene.start("niveau9");
+      
+      });
+
+      var bouton_play = this.add.image(600, 950, "Réponse3").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        this.scene.start("niveau9");
+      
+      });
+
+      var bouton_play = this.add.image(800, 950, "Réponse4").setDepth(1).setDisplaySize(55, 55);
+      bouton_play.setInteractive();
+      bouton_play.on("pointerup", () => {
+  
+        this.scene.start("niveau9");
+      
+      });
+
 
 
 
@@ -53,17 +100,7 @@ export default class niveau2 extends Phaser.Scene {
     this.clavier = this.input.keyboard.createCursorKeys();
     this.physics.add.collider(this.player, this.groupe_plateformes);
 
-    var bouton_play = this.add.image(200, 950, "Réponse1").setDepth(1).setDisplaySize(55, 55);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(400, 950, "Réponse2").setDepth(1).setDisplaySize(55, 55);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(600, 950, "Réponse3").setDepth(1).setDisplaySize(55, 55);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(800, 950, "Réponse4").setDepth(1).setDisplaySize(55, 55);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(900, 50, "RG2").setDepth(1).setDisplaySize(55, 55);
-        bouton_play.setInteractive();
-
+   
 
 
 
