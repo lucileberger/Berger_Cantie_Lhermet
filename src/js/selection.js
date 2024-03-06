@@ -162,9 +162,10 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
     player.setPipeline( 'Light2D');
     this.calque_plateformes.setPipeline( 'Light2D');
   
-    this. light = this.lights.addLight(600, 300, 300);
-    this.light.setIntensity(2);
-    this. lights. enable().setAmbientColor(0x000000);
+    light = this.lights.addLight(600, 300, 300);
+    console.log()
+    light.setIntensity(2);
+    this.lights.enable().setAmbientColor(0xFFFFFF);
 
    
   }
@@ -226,8 +227,8 @@ if (velocityX < 0) {
   player.anims.play("anim_face", true);
 }
 
-this.light.x= player.x;
-this.light.y =player.y;
+light.x= player.x;
+light.y =player.y;
 
     if (clavier.up.isDown && player.body.touching.down) {
       player.setVelocityY(-330);

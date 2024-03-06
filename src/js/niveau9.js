@@ -81,7 +81,7 @@ export default class niveau9 extends Phaser.Scene {
 
     bouton_over.on("pointerup", () => {
 
-      this.scene.switch("niveau1");
+      this.scene.switch("menu");
       
       
     });
