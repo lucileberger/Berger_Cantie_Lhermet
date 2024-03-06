@@ -42,9 +42,9 @@ export default class niveau1 extends Phaser.Scene {
     });
 
 
-    this.porte7 = this.physics.add.staticSprite(200, 950, "img_porte7");
-    this.porte8 = this.physics.add.staticSprite(400, 950, "img_porte8");
-    this.porte9 = this.physics.add.staticSprite(600, 950, "img_porte9");
+    this.porte7 = this.physics.add.staticSprite(200, 950, "img_porte1");
+    this.porte8 = this.physics.add.staticSprite(400, 950, "img_porte1");
+    this.porte9 = this.physics.add.staticSprite(600, 950, "img_porte1");
     this.porte_retour = this.physics.add.staticSprite(800, 950, "img_porte1");
 
 
