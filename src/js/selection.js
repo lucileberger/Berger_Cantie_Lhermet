@@ -106,7 +106,7 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
     this.porte4 = this.physics.add.staticSprite(90, 850, "img_porte4");
     this.porte5 = this.physics.add.staticSprite(950, 150, "img_porte5");
     this.porte6 = this.physics.add.staticSprite(950, 850, "img_porte6");
-    this.porte7 = this.physics.add.staticSprite(510, 465, "fin");
+    
     //this.porte8 = this.physics.add.staticSprite(950, 150, "img_porte8");
     //this.porte9 = this.physics.add.staticSprite(950, 850, "img_porte9");
     
@@ -173,6 +173,45 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
     console.log()
     light.setIntensity(2);
     this.lights.enable().setAmbientColor(0x000000);
+
+
+
+
+
+    let porte1Active = true;
+    let porte2Active = true;
+    let porte3Active = true;
+    let porte4Active = true;
+    let porte5Active = true;
+    let porte6Active = true;
+    
+    // Supposez que porte7Active commence par false, puisqu'elle ne sera active que sous certaines conditions
+    let porte7Active = false;
+    
+    // Lorsque vous désactivez une porte, mettez à jour sa variable
+    if (this.physics.overlap(player, this.porte3)) {
+      this.scene.switch("selection");
+      this.porte3.disableBody(true, true);
+      porte3Active = false;
+    }
+    // Répétez pour les autres portes jusqu'à la porte 6
+    
+    // Ensuite, vérifiez si toutes les portes sont désactivées pour activer la porte 7
+    if (!porte3Active ) {
+      if (!porte7Active) {
+        this.porte7 = this.physics.add.staticSprite(510, 465, "fin");
+        porte7Active = true; // Assurez-vous que la porte 7 est marquée comme active
+      }
+    }
+
+
+
+
+
+
+
+
+
 
    
   }
@@ -293,7 +332,7 @@ light.y =player.y;
     }
 
     this.cameras.main.startFollow(player);
-    this.cameras.main.setZoom(2.5);
+    this.cameras.main.setZoom(2.6);
   }
 }
 
