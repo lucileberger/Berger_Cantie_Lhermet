@@ -40,16 +40,24 @@ export default class selection extends Phaser.Scene {
     this.load.image("img_porte7", "src/assets/Parchemin.png");
     this.load.image("img_porte8", "src/assets/Parchemin.png");
     this.load.image("img_porte9", "src/assets/Parchemin.png");
+    this.load.image("fin", "src/assets/Coffre.png");
+
     
 
     // chargement tuiles de jeu
 this.load.image("Phaser_tuiles_de_jeu", "src/assets/Map3.png");
 this.load.tilemapTiledJSON("carte", "src/assets/MapFinal6.json"); 
+this.load.audio("sonsword", "./src/assets/Introduction.mp3");
 
 
 
   }
   create() {
+    this.game.config.musiqueme.stop();
+    
+    this.game.config.sonsword = this.sound.add("sonsword");
+
+this.game.config.sonsword.play();
     
     // chargement de la carte
 const carteDuNiveau = this.add.tilemap("carte");
@@ -96,16 +104,13 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
     this.porte2 = this.physics.add.staticSprite(60, 200, "img_porte2");
     this.porte3 = this.physics.add.staticSprite(700 , 90, "img_porte3");
     this.porte4 = this.physics.add.staticSprite(90, 850, "img_porte4");
-    this.porte5 = this.physics.add.staticSprite(330, 850, "img_porte5");
-    this.porte6 = this.physics.add.staticSprite(700, 850, "img_porte6");
-    this.porte7 = this.physics.add.staticSprite(950, 450, "img_porte7");
-    this.porte8 = this.physics.add.staticSprite(950, 150, "img_porte8");
-    this.porte9 = this.physics.add.staticSprite(950, 850, "img_porte9");
+    this.porte5 = this.physics.add.staticSprite(950, 150, "img_porte5");
+    this.porte6 = this.physics.add.staticSprite(950, 850, "img_porte6");
+    this.porte7 = this.physics.add.staticSprite(510, 465, "fin");
+    //this.porte8 = this.physics.add.staticSprite(950, 150, "img_porte8");
+    //this.porte9 = this.physics.add.staticSprite(950, 850, "img_porte9");
     
-
-    /****************************
-     *  CREATION DU PERSONNAGE  *
-     ****************************/
+  
 
     // On créée un nouveeau personnage : player
     player = this.physics.add.sprite(100, 450, "img_perso");
@@ -163,9 +168,10 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
     player.setPipeline( 'Light2D');
     this.calque_plateformes.setPipeline( 'Light2D');
   
-    this. light = this.lights.addLight(600, 300, 300);
-    this.light.setIntensity(2);
-    this. lights. enable().setAmbientColor(0x000000);
+    light = this.lights.addLight(600, 300, 300);
+    console.log()
+    light.setIntensity(2);
+    this.lights.enable().setAmbientColor(0xFFFFFF);
 
    
   }
@@ -177,10 +183,7 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
 
   update() {
 
-    this.input.on('pointermove', function (pointer) {
-      light.x = pointer.x;
-      light.y = pointer.y;
-  });
+   
 
 // Vitesse de déplacement
 const speed = 140;
@@ -230,32 +233,61 @@ if (velocityX < 0) {
   player.anims.play("anim_face", true);
 }
 
-this.light.x= player.x;
-this.light.y =player.y;
+light.x= player.x;
+light.y =player.y;
 
     if (clavier.up.isDown && player.body.touching.down) {
       player.setVelocityY(-330);
     }
 
     if (Phaser.Input.Keyboard.JustDown(clavier.space) == true) {
-      if (this.physics.overlap(player, this.porte1))
-        this.scene.switch("niveau1");
-      if (this.physics.overlap(player, this.porte2))
+      if (this.physics.overlap(player, this.porte1)){ this.scene.switch("niveau1");
+      this.porte1.disableBody(true,true);}
+        
+
+      if (this.physics.overlap(player, this.porte2)){
         this.scene.switch("niveau2");
-      if (this.physics.overlap(player, this.porte3))
+        this.porte2.disableBody(true,true);}
+
+
+
+
+      if (this.physics.overlap(player, this.porte3)){
         this.scene.switch("niveau3");
-        if (this.physics.overlap(player, this.porte4))
+        this.porte3.disableBody(true,true);}
+
+
+
+        if (this.physics.overlap(player, this.porte4)){
         this.scene.switch("niveau4");
-        if (this.physics.overlap(player, this.porte5))
+        this.porte4.disableBody(true,true);}
+
+
+
+        if (this.physics.overlap(player, this.porte5)){
         this.scene.switch("niveau5");
-        if (this.physics.overlap(player, this.porte6))
+        this.porte5.disableBody(true,true);}
+
+
+
+        if (this.physics.overlap(player, this.porte6)){
         this.scene.switch("niveau6");
-        if (this.physics.overlap(player, this.porte7))
+        this.porte6.disableBody(true,true);}
+
+
+        if (this.physics.overlap(player, this.porte7)){
         this.scene.switch("niveau7");
-        if (this.physics.overlap(player, this.porte8))
+        this.porte7.disableBody(true,true);}
+
+
+        if (this.physics.overlap(player, this.porte8)){
         this.scene.switch("niveau8");
-        if (this.physics.overlap(player, this.porte9))
+        this.porte8.disableBody(true,true);}
+
+
+        if (this.physics.overlap(player, this.porte9)){
         this.scene.switch("niveau9");
+        this.porte9.disableBody(true,true);}
     }
 
     this.cameras.main.startFollow(player);

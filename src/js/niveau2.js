@@ -7,10 +7,10 @@ export default class niveau2 extends Phaser.Scene {
   }
   preload() {
     this.load.image("image_fond", "src/assets/IMAGE9.png");
-    this.load.image("Réponse1", "src/assets/19.jpg");
-    this.load.image("Réponse2", "src/assets/Chiffre15.jpg");
-    this.load.image("Réponse3", "src/assets/4.jpg");
-    this.load.image("Réponse4", "src/assets/2.jpg");
+    this.load.image("Réponse1", "src/assets/19.png");
+    this.load.image("Réponse2", "src/assets/Chiffre15.png");
+    this.load.image("Réponse3", "src/assets/4.png");
+    this.load.image("Réponse4", "src/assets/2.png");
     this.load.image("RG2","src/assets/Vert.jpg")
 
    
@@ -39,10 +39,10 @@ export default class niveau2 extends Phaser.Scene {
       fontSize: "22pt"
     });
 
-    this.porte7 = this.physics.add.staticSprite(200, 950, "img_porte7");
-    this.porte8 = this.physics.add.staticSprite(800, 950, "img_porte8");
-    this.porte9 = this.physics.add.staticSprite(600, 950, "img_porte9");
-    this.porte_retour = this.physics.add.staticSprite(400, 950, "img_porte1");
+    this.porte7 = this.physics.add.staticSprite(400, 950, "img_porte1");
+    this.porte8 = this.physics.add.staticSprite(800, 950, "img_porte1");
+    this.porte9 = this.physics.add.staticSprite(600, 950, "img_porte1");
+    this.porte_retour = this.physics.add.staticSprite(200, 950, "img_porte1");
 
 
 

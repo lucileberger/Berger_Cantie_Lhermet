@@ -23,7 +23,7 @@ export default class histoire extends Phaser.Scene {
   
     preload() {
   
-        this.load.image("histoire", "./src/assets/parch.jpg");
+      this.load.image("histoire", "./src/assets/parch.jpg");
   
       this.load.image("come", "./src/assets/come.png");
       this.load.image("rules", "./src/assets/rules.png");
@@ -93,7 +93,7 @@ export default class histoire extends Phaser.Scene {
   
         this.scene.start("selection");
         
-        this.sonsword.stop()
+        //this.sonsword.stop()
       });
 
       
@@ -104,9 +104,14 @@ export default class histoire extends Phaser.Scene {
       });
   
     }
+    
+    
+  
+  }
+
 
    
 
-}
+
   
   

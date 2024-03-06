@@ -8,7 +8,7 @@ export default class niveau7 extends Phaser.Scene {
     });
   }
   preload() {
-    this.load.image("RG1","src/assets/Violet.jpg")
+    this.load.image("RG1","src/assets/Violet.png")
     this.load.image("RG5","src/assets/Rouge.jpg")
     this.load.image("RG3","src/assets/Bleue.jpg")
     this.load.image("RG2","src/assets/Vert.jpg")
@@ -95,9 +95,21 @@ export default class niveau7 extends Phaser.Scene {
  var bouton_play10 = this.add.image(700, 900, "RG10").setDepth(1).setDisplaySize(55, 55).setInteractive();
  bouton_play10.on('pointerdown', function () {
      verifierOrdre(10);
+
  });
  
 
+ bouton_play1.on("pointerdown", () => {
+
+    bouton_play1.setTint(0x00FF00); // Change la teinte du bouton
+  
+    });
+
+    bouton_play1.on("pointerdown", () => {
+
+        bouton_play1.clearTint(); // Réinitialise la teinte du bouton
+      
+        });
 
 
 
@@ -106,44 +118,44 @@ export default class niveau7 extends Phaser.Scene {
         
 
     // ajout d'un texte distintcif  du niveau
-    this.add.text(250, 100, "Vous avez presque gagner", {
+    this.add.text(250, 100, "Vous avez presque gagné", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
       fontSize: "60pt"
     });
-    this.add.text(60, 220, " \nTous au long de la partie vous avez trouvé dse carrées de Couleurs différentes.\nMaintenant tu dois avec ces carrées écrire le bon mots pour pouvoir sortir de ce manoir ", {
+    this.add.text(60, 220, " \nTous au long de la partie vous avez trouvé dse carrées de Couleurs différentes associé à des chiffres.\nMaintenant tu dois avec ces carrées écrire le bon mots pour pouvoir sortir de ce manoir ", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
 
-      this.add.text(330, 480, " F", {
+      this.add.text(330, 480, " D", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(330, 580, " L", {
+      this.add.text(330, 580, " N", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(330, 680, " B", {
+      this.add.text(330, 680, " O", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(330, 780, "I", {
+      this.add.text(330, 780, "P", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(330, 880, " A", {
+      this.add.text(330, 880, " U", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(730, 480, " P", {
+      this.add.text(730, 480, " M", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(730, 580, " E", {
+      this.add.text(730, 580, " T", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(730, 680, " O", {
+      this.add.text(730, 680, " K", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
@@ -151,7 +163,7 @@ export default class niveau7 extends Phaser.Scene {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(730, 880, " I", {
+      this.add.text(730, 880, " E", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
@@ -219,3 +231,4 @@ export default class niveau7 extends Phaser.Scene {
   
 
 
+  
