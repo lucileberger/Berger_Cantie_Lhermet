@@ -92,36 +92,7 @@ bouton_play1.on("pointerup", () => {
   }
 
   update() {
-    if (this.clavier.left.isDown) {
-      this.player.setVelocityX(-160);
-      this.player.anims.play("anim_tourne_gauche", true);
-    } else if (this.clavier.right.isDown) {
-      this.player.setVelocityX(160);
-      this.player.anims.play("anim_tourne_droite", true);
-    } else {
-      this.player.setVelocityX(0);
-      this.player.anims.play("anim_face");
-    }
-
-    // Mouvement vertical
-    if (this.clavier.up.isDown) {
-      this.player.setVelocityY(-330);
-    } else if (this.clavier.down.isDown) {
-      this.player.setVelocityY(330);
-    } else {
-      this.player.setVelocityY(0);
-    }
-
-    if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
-      if (this.physics.overlap(this.player, this.porte_retour))        
-        this.scene.switch("selection");
-       if (this.physics.overlap(this.player, this.porte9))
-        this.scene.switch("niveau9");
-        if (this.physics.overlap(this.player, this.porte7))
-        this.scene.switch("niveau9");
-        if (this.physics.overlap(this.player, this.porte8))
-        this.scene.switch("niveau9");
-    }
+    
   }
 }
 
