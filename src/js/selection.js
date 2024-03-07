@@ -249,16 +249,11 @@ export default class selection extends Phaser.Scene {
       porte6Active = false;
     }
     
-    // Ensuite, vérifiez si toutes les portes sont désactivées pour activer la porte 7
-    if (!porte1Active && !porte2Active  && !porte5Active && !porte6Active) {
-      
-      if (!porte7Active) {
+
         console.log("porte 7 desact");
         this.porte7 = this.physics.add.staticSprite(510, 465, "fin");
         porte7Active = true; // Assurez-vous que la porte 7 est marquée comme active
-      }
-    }
-
+      
     // Vitesse de déplacement
     const speed = 140;
 
