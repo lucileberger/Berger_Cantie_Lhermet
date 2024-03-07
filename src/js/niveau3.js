@@ -8,10 +8,10 @@ export default class niveau3 extends Phaser.Scene {
   }
   preload() {
     this.load.image("Horloge", "src/assets/Horaire.jpg");
-    this.load.image("Réponse1", "src/assets/10H39.jpg");
-    this.load.image("Réponse2", "src/assets/10H23.jpg");
-    this.load.image("Réponse3", "src/assets/5H50.jpg");
-    this.load.image("Réponse4", "src/assets/6H53.png");
+    this.load.image("0356", "src/assets/0356.PNG");
+    this.load.image("603", "src/assets/603.PNG");
+    this.load.image("1036", "src/assets/1036.PNG");
+    this.load.image("653", "src/assets/653.PNG");
     this.load.image("3bleu","src/assets/3bleu.png")
 
    
@@ -21,16 +21,16 @@ export default class niveau3 extends Phaser.Scene {
 
     this.cameras.main.setBackgroundColor('#096A61');
     
-    var bouton_play1 = this.add.image(800, 800, "3bleu").setDepth(1).setDisplaySize(55, 55);
-bouton_play1.setInteractive();
-bouton_play1.setVisible(false);
-bouton_play1.on("pointerup", () => {
+    var bouton_play2 = this.add.image(800, 800, "3bleu").setDepth(1).setDisplaySize(55, 55);
+bouton_play2.setInteractive();
+bouton_play2.setVisible(false);
+bouton_play2.on("pointerup", () => {
 
   this.scene.switch("selection");
 
 });
 
-var bouton_play = this.add.image(200, 950, "Réponse1").setDepth(1).setDisplaySize(55, 55);
+var bouton_play = this.add.image(200, 950, "0356").setDepth(1).setDisplaySize(55, 55);
       bouton_play.setInteractive();
       bouton_play.on("pointerup", () => {
   
@@ -40,7 +40,7 @@ var bouton_play = this.add.image(200, 950, "Réponse1").setDepth(1).setDisplaySi
 
 
 
-      var bouton_play = this.add.image(400, 950, "Réponse2").setDepth(1).setDisplaySize(55, 55);
+      var bouton_play = this.add.image(400, 950, "603").setDepth(1).setDisplaySize(55, 55);
       bouton_play.setInteractive();
       bouton_play.on("pointerup", () => {
   
@@ -48,7 +48,7 @@ var bouton_play = this.add.image(200, 950, "Réponse1").setDepth(1).setDisplaySi
       
       });
 
-      var bouton_play = this.add.image(600, 950, "Réponse3").setDepth(1).setDisplaySize(55, 55);
+      var bouton_play = this.add.image(600, 950, "1036").setDepth(1).setDisplaySize(55, 55);
       bouton_play.setInteractive();
       bouton_play.on("pointerup", () => {
   
@@ -56,30 +56,13 @@ var bouton_play = this.add.image(200, 950, "Réponse1").setDepth(1).setDisplaySi
       
       });
 
-      var bouton_play = this.add.image(800, 950, "Réponse4").setDepth(1).setDisplaySize(55, 55);
-      bouton_play.setInteractive();
-      bouton_play.on("pointerup", () => {
+      var bouton_play1 = this.add.image(800, 950, "653").setDepth(1).setDisplaySize(55, 55);
+      bouton_play1.setInteractive();
+      bouton_play1.on("pointerup", () => {
   
-        bouton_play1.setVisible(true);      
+        bouton_play2.setVisible(true);      
       });
    
-
-
-
-
-      
-    var bouton_play = this.add.image(200, 950, "Réponse1.2").setDepth(1).setDisplaySize(70, 70);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(400, 950, "Réponse2.2").setDepth(1).setDisplaySize(70, 70);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(600, 950, "Réponse3.2").setDepth(1).setDisplaySize(70, 70);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(800, 950, "Réponse4.2").setDepth(1).setDisplaySize(70, 70);
-    bouton_play.setInteractive();
-    var bouton_play = this.add.image(900, 50, "RG3").setDepth(1).setDisplaySize(55, 55);
-        bouton_play.setInteractive();
-
-
 
 
 
@@ -94,14 +77,11 @@ var bouton_play = this.add.image(200, 950, "Réponse1").setDepth(1).setDisplaySi
       fontSize: "60pt"
     });
 
-    this.add.text(60, 220, "Énoncé de l’énigme :\n \nMa montre digitale indique 06:35.", {
+    this.add.text(60, 220, "Énoncé de l’énigme :\n \nMa montre digitale indique 06:35.  \n Quelle heure sera-t-il la prochaine fois que ces 4 chiffres seront à nouveau réunis?", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
       fontSize: "26pt"
     });
-    this.add.text(220, 300, "Quelle heure sera-t-il la prochaine fois que ces 4 chiffres seront à nouveau réunis?.", {
-      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
-      fontSize: "22pt"
-    });
+   
     
     this.add.text(60, 800, "A vous de résoudre cette énigme pour obtenir un indice :", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',

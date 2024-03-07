@@ -144,19 +144,18 @@ update() {
   } 
   if (clavier.space.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
-
+  
     if (gameOver) {
-          this.scene.switch("niveau9");;
-    }} 
+       this.scene.switch("niveau9");
+    } }
    
-    ;
-
+    
 
     if (score >= 200) {
       bouton_play.setVisible(true);
     }
 
-}
+} 
 }
 
 function ramasserEtoile(un_player, une_etoile) {
@@ -192,6 +191,7 @@ if (groupe_etoiles.countActive(true) === 0) {
 
  if (score >= 200) {
     bouton_play.setVisible(true);
+
   }
   } 
 

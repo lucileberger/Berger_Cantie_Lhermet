@@ -60,10 +60,14 @@ export default class selection extends Phaser.Scene {
 
 
   }
+
+
   create() {
     this.game.config.musiqueme.stop();
 
     this.game.config.sonsword = this.sound.add("sonsword");
+    this.game.config.sonsword.play({ loop: true });
+
 
     this.game.config.sonsword.play();
 
