@@ -225,11 +225,11 @@ bouton_play2.clearTint(); // Réinitialise la teinte du bouton
         
 
     // ajout d'un texte distintcif  du niveau
-    this.add.text(250, 100, "Vous avez presque gagné", {
+    this.add.text(250, 100, "Vous avez bientôt fini votre quête : ", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
       fontSize: "60pt"
     });
-    this.add.text(60, 220, " \nTous au long de la partie vous avez trouvé dse carrées de Couleurs différentes associé à des chiffres.\nMaintenant tu dois avec ces carrées écrire le bon mots pour pouvoir sortir de ce manoir ", {
+    this.add.text(60, 220, " \nTout au long de la partie, vous avez trouvé des carrés de couleurs associés à des chiffres. \n Il faut maintenant les utiliser pour espérer sortir du manoir. ", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
@@ -238,19 +238,19 @@ bouton_play2.clearTint(); // Réinitialise la teinte du bouton
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(330, 580, " N", {
+      this.add.text(330, 580, " U", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(330, 680, " O", {
+      this.add.text(330, 680, " P", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(330, 780, "P", {
+      this.add.text(330, 780, " O", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
-      this.add.text(330, 880, " U", {
+      this.add.text(330, 880, " N", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
       });
