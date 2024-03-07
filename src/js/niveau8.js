@@ -31,10 +31,7 @@ export default class niveau8 extends Phaser.Scene {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
       fontSize: "60pt"
     });
-    this.add.text(60, 120, "\nVous avez réussi toute les enigmes vous etes maintenant libre.", {
-        fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
-        fontSize: "26pt"
-      });
+    
   
 
 

@@ -40,7 +40,7 @@ export default class niveau2 extends Phaser.Scene {
      
     });
 
-    this.add.text(270, 830, "Quel est le plus grand résultat que l’on peut obtenir ?", {
+    this.add.text(270, 750, "Quel est le plus grand résultat que l’on peut obtenir ?", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
       fontSize: "22pt"
     });

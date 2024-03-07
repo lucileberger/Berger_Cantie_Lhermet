@@ -30,7 +30,7 @@ export default class niveau7 extends Phaser.Scene {
     
  // Initialisation du tableau pour suivre l'ordre des boutons pressés
  let ordreDesBoutonsPresses = [];
- let ordreCorrect = [1  ,  5  ,  4  ,  3  ,  2  ,  7];
+ let ordreCorrect = [1  ,  2  ,  3  ,  4 ,  5  ,  7];
  let self = this;
 
  this.infoText = this.add.text(400, 400, '', {
@@ -227,7 +227,7 @@ bouton_play2.clearTint(); // Réinitialise la teinte du bouton
     // ajout d'un texte distintcif  du niveau
     this.add.text(250, 100, "Vous avez bientôt fini votre quête : ", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
-      fontSize: "60pt"
+      fontSize: "45pt"
     });
     this.add.text(60, 220, " \nTout au long de la partie, vous avez trouvé des carrés de couleurs associés à des chiffres. \n Il faut maintenant les utiliser pour espérer sortir du manoir. ", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',

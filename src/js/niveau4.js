@@ -189,7 +189,7 @@ if (groupe_etoiles.countActive(true) === 0) {
  score += 10;
  zone_texte_score.setText("Score: " + score); 
 
- if (score >= 200) {
+ if (score >= 10) {
     bouton_play.setVisible(true);
 
   }
