@@ -81,6 +81,10 @@ this.game.config.musiqueme.play();
 
 
 
+    
+
+
+
     //Cas ou la sourris clique sur le bouton play :
 
     // on lance le niveau 1
