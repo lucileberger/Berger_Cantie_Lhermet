@@ -56,7 +56,7 @@ export default class selection extends Phaser.Scene {
     // chargement tuiles de jeu
     this.load.image("Phaser_tuiles_de_jeu", "src/assets/Map3.png");
     this.load.tilemapTiledJSON("carte", "src/assets/MapFinal6.json");
-    this.load.audio("sonsword", "./src/assets/Introduction.mp3");
+    this.load.audio("sonsword", "./src/assets/selection.mp3");
 
 
 
