@@ -30,7 +30,7 @@ export default class niveau7 extends Phaser.Scene {
     
  // Initialisation du tableau pour suivre l'ordre des boutons pressés
  let ordreDesBoutonsPresses = [];
- let ordreCorrect = [1,5,4,3,2,7];
+ let ordreCorrect = [1  ,  5  ,  4  ,  3  ,  2  ,  7];
  let self = this;
 
  this.infoText = this.add.text(400, 400, '', {

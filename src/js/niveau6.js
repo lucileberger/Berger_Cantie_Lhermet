@@ -21,6 +21,7 @@ export default class niveau6 extends Phaser.Scene {
   // chargement de la carte
   this.load.tilemapTiledJSON("carte6", "src/assets/cartelabyrhinte4.json");  
 
+  this.load.image("porte_retour6", "src/assets/6rose.png");
 
     }
   
@@ -62,7 +63,7 @@ this.add.image(500, 800, "carte6");
     this.player.setCollideWorldBounds(true);
     this.clavier = this.input.keyboard.createCursorKeys();
 
-    this.porte_retour = this.physics.add.staticSprite(1700, 40, "img_porte1");
+    this.porte_retour = this.physics.add.staticSprite(1700, 40, "porte_retour6");
 
     this.CalquedeTuiles1.setCollisionByProperty({ estSolide: true }); 
     this.physics.add.collider(this.player, this.CalquedeTuiles1); 
