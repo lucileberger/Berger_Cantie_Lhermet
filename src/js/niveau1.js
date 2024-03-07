@@ -31,7 +31,7 @@ bouton_play1.on("pointerup", () => {
 
 });
 
-var bouton_play = this.add.image(200, 950, "Réponse19").setDepth(1).setDisplaySize(55, 55);
+var bouton_play = this.add.image(200, 950, "Réponse27").setDepth(1).setDisplaySize(55, 55);
       bouton_play.setInteractive();
       bouton_play.on("pointerup", () => {
   
@@ -57,7 +57,7 @@ var bouton_play = this.add.image(200, 950, "Réponse19").setDepth(1).setDisplayS
       
       });
 
-      var bouton_play = this.add.image(800, 950, "Réponse27").setDepth(1).setDisplaySize(55, 55);
+      var bouton_play = this.add.image(800, 950, "Réponse19").setDepth(1).setDisplaySize(55, 55);
       bouton_play.setInteractive();
       bouton_play.on("pointerup", () => {
   
@@ -103,58 +103,11 @@ var bouton_play = this.add.image(200, 950, "Réponse19").setDepth(1).setDisplayS
     
 
 
-    this.player = this.physics.add.sprite(100, 450, "img_perso");
-    this.player.refreshBody();
-    this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
-    this.clavier = this.input.keyboard.createCursorKeys();
-    this.physics.add.collider(this.player, this.groupe_plateformes);
-
 
   }
 
   update() {
-    if (this.clavier.left.isDown) {
-      this.player.setVelocityX(-160);
-      this.player.anims.play("anim_tourne_gauche", true);
-    } else if (this.clavier.right.isDown) {
-      this.player.setVelocityX(160);
-      this.player.anims.play("anim_tourne_droite", true);
-    } else {
-      this.player.setVelocityX(0);
-      this.player.anims.play("anim_face");
-    }
-
-    // Mouvement vertical
-    if (this.clavier.up.isDown) {
-      this.player.setVelocityY(-330);
-    } else if (this.clavier.down.isDown) {
-      this.player.setVelocityY(330);
-    } else {
-      this.player.setVelocityY(0);
-    }
-
-    // Mouvement vertical
-    if (this.clavier.up.isDown) {
-      this.player.setVelocityY(-330);
-    } else if (this.clavier.down.isDown) {
-      this.player.setVelocityY(330);
-    } else {
-      this.player.setVelocityY(0);
-      if (this.clavier.up.isDown && this.player.body.touching.down) {
-        this.player.setVelocityY(-330);
-      }
-
-      if (Phaser.Input.Keyboard.JustDown(this.clavier.space) == true) {
-        if (this.physics.overlap(this.player, this.porte_retour))        
-          this.scene.switch("selection");
-         if (this.physics.overlap(this.player, this.porte9))
-          this.scene.switch("niveau9");
-          if (this.physics.overlap(this.player, this.porte7))
-          this.scene.switch("niveau9");
-          if (this.physics.overlap(this.player, this.porte8))
-          this.scene.switch("niveau9");
-        
+   
         
         
       }
@@ -162,6 +115,4 @@ var bouton_play = this.add.image(200, 950, "Réponse19").setDepth(1).setDisplayS
           
         }
       
-    }
-  }
-
+  
