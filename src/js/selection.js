@@ -47,17 +47,20 @@ export default class selection extends Phaser.Scene {
     // chargement tuiles de jeu
 this.load.image("Phaser_tuiles_de_jeu", "src/assets/Map3.png");
 this.load.tilemapTiledJSON("carte", "src/assets/MapFinal6.json"); 
-this.load.audio("sonsword", "./src/assets/Introduction.mp3");
+this.load.audio("sonsword", "./src/assets/selection.mp3");
 
 
 
   }
+
+
   create() {
     this.game.config.musiqueme.stop();
     
     this.game.config.sonsword = this.sound.add("sonsword");
+    this.game.config.sonsword.play({ loop: true });
 
-this.game.config.sonsword.play();
+
     
     // chargement de la carte
 const carteDuNiveau = this.add.tilemap("carte");
