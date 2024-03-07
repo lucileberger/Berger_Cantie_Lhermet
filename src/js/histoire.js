@@ -53,7 +53,6 @@ export default class histoire extends Phaser.Scene {
       // Texte à ajouter en blanc gris avec la police Chiller en gras
   
       var texte = this.add.text(220, 150, "Au cœur d'une forêt dense se dresse un manoir abandonné. \n\nSelon la légende, ce manoir renferme d'innombrables secrets \net énigmes anciennes, gardées par un esprit mystérieux. \nLes rumeurs disent que quiconque parvient à résoudre \ntoutes les énigmes du manoir et par conséquent \n libérer l’esprit du château sera récompensé \npar un trésor légendaire. \nAttention, si vous échouez, vous y serez piégé pour l'éternité...\n\nVous incarnez un aventurier courageux qui décide de relever\n le défi et de percer les mystères du manoir.", { font: "bold 24px Papyrus", fill: "#EDE9CE" }).setDepth(1);
-  
       //=========================================================
   
       //on rend le bouton interratif
