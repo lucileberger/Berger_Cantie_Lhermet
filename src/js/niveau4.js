@@ -23,7 +23,7 @@ export default class niveau4 extends Phaser.Scene {
     this.load.image("img_etoile", "src/assets/bouledepapierokk.png"); 
     this.load.image("img_bombe", "src/assets/BouledePapier4.png"); 
     this.load.image("img_plateforme2", "src/assets/platformeok.png");
-    this.load.image("come2", "src/assets/Parchemin.png"); 
+    this.load.image("come2", "src/assets/5rouge.png"); 
  
 
   
@@ -145,11 +145,11 @@ update() {
   if (clavier.space.isDown && player.body.touching.down) {
     player.setVelocityY(-330);
   
-    if (gameOver) {
+    } 
+   if (gameOver) {
        this.scene.switch("niveau9");
-    } }
-   
     
+   }
 
     if (score >= 200) {
       bouton_play.setVisible(true);
