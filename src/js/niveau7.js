@@ -8,7 +8,7 @@ export default class niveau7 extends Phaser.Scene {
     });
   }
   preload() {
-    this.load.image("RG1","src/assets/Violet.png")
+    this.load.image("RG1","src/assets/violet.PNG")
     this.load.image("RG5","src/assets/Rouge.jpg")
     this.load.image("RG3","src/assets/Bleue.jpg")
     this.load.image("RG2","src/assets/Vert.jpg")

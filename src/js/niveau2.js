@@ -10,7 +10,7 @@ export default class niveau2 extends Phaser.Scene {
     this.load.image("Réponse1", "src/assets/19.png");
     this.load.image("Réponse2", "src/assets/Chiffre15.png");
     this.load.image("Réponse3", "src/assets/4.png");
-    this.load.image("Réponse4", "src/assets/2.png");
+   
     this.load.image("2vert","src/assets/2vert.png")
 
    
@@ -82,25 +82,10 @@ bouton_play1.on("pointerup", () => {
       
       });
 
-      var bouton_play = this.add.image(800, 950, "Réponse4").setDepth(1).setDisplaySize(55, 55);
-      bouton_play.setInteractive();
-      bouton_play.on("pointerup", () => {
-  
-        this.scene.start("niveau9");
-      
-      });
+     
 
 
 
-
-    this.player = this.physics.add.sprite(100, 450, "img_perso");
-    this.player.refreshBody();
-    this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
-    this.clavier = this.input.keyboard.createCursorKeys();
-    this.physics.add.collider(this.player, this.groupe_plateformes);
-
-   
 
 
 
