@@ -23,8 +23,7 @@ export default class niveau7 extends Phaser.Scene {
   }
 
   create() {
-    fct.doNothing();
-    fct.doAlsoNothing();
+   
     
 
     
