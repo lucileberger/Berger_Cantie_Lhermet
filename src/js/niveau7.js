@@ -18,13 +18,19 @@ export default class niveau7 extends Phaser.Scene {
     this.load.image("RG7","src/assets/Rose.jpg")
     this.load.image("RG8","src/assets/VertF.jpg")
     this.load.image("RG9","src/assets/BleuT.jpg")
-    
+    this.load.image("sortie","src/assets/Parchemin.png")
    
   }
 
   create() {
    
+    var bouton_play = this.add.image(600, 950, "sortie").setDepth(1).setDisplaySize(55, 55);
+    bouton_play.setInteractive();
+    bouton_play.on("pointerup", () => {
+
+      this.scene.start("selection");
     
+    });
 
     
  // Initialisation du tableau pour suivre l'ordre des boutons pressés
@@ -231,6 +237,11 @@ bouton_play2.clearTint(); // Réinitialise la teinte du bouton
     this.add.text(60, 220, " \nTout au long de la partie, vous avez trouvé des carrés de couleurs associés à des chiffres. \n Il faut maintenant les utiliser pour espérer sortir du manoir. ", {
         fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
         fontSize: "26pt"
+      });
+
+      this.add.text(60, 350, "Note : Si vous avez pas fait les six missions veuillez sortir à l'aide du parchemin. ", {
+        fontFamily: 'Gabriola, "Goudy Bookletter 1911", bold, Times, serif',
+        fontSize: "20pt"
       });
 
       this.add.text(330, 480, " D", {

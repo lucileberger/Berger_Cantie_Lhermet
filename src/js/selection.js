@@ -250,7 +250,6 @@ export default class selection extends Phaser.Scene {
     }
     
 
-        console.log("porte 7 desact");
         this.porte7 = this.physics.add.staticSprite(510, 465, "fin");
         porte7Active = true; // Assurez-vous que la porte 7 est marquée comme active
       
