@@ -94,14 +94,11 @@ var bouton_play = this.add.image(200, 950, "Réponse1").setDepth(1).setDisplaySi
       fontSize: "60pt"
     });
 
-    this.add.text(60, 220, "Énoncé de l’énigme :\n \nMa montre digitale indique 06:35.", {
+    this.add.text(60, 220, "Énoncé de l’énigme :\n \nMa montre digitale indique 06:35.  \n Quelle heure sera-t-il la prochaine fois que ces 4 chiffres seront à nouveau réunis?", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
       fontSize: "26pt"
     });
-    this.add.text(220, 300, "Quelle heure sera-t-il la prochaine fois que ces 4 chiffres seront à nouveau réunis?.", {
-      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
-      fontSize: "22pt"
-    });
+   
     
     this.add.text(60, 800, "A vous de résoudre cette énigme pour obtenir un indice :", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
