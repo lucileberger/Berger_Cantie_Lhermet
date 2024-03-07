@@ -7,9 +7,17 @@ import * as fct from "/src/js/fonctions.js";
 var player; // désigne le sprite du joueur
 var clavier; // pour la gestion du clavier
 var groupe_plateformes;
-var light; 
+var light;
 var velocityX;
 var velocityY;
+var porte1Active;
+var porte2Active ;
+var porte3Active;
+var porte4Active;
+var porte5Active;
+var porte6Active;
+var porte7Active;
+
 // définition de la classe "selection"
 export default class selection extends Phaser.Scene {
   constructor() {
@@ -42,35 +50,35 @@ export default class selection extends Phaser.Scene {
     this.load.image("img_porte9", "src/assets/Parchemin.png");
     this.load.image("fin", "src/assets/Coffre.png");
 
-    
+
 
     // chargement tuiles de jeu
-this.load.image("Phaser_tuiles_de_jeu", "src/assets/Map3.png");
-this.load.tilemapTiledJSON("carte", "src/assets/MapFinal6.json"); 
-this.load.audio("sonsword", "./src/assets/Introduction.mp3");
+    this.load.image("Phaser_tuiles_de_jeu", "src/assets/Map3.png");
+    this.load.tilemapTiledJSON("carte", "src/assets/MapFinal6.json");
+    this.load.audio("sonsword", "./src/assets/Introduction.mp3");
 
 
 
   }
   create() {
     this.game.config.musiqueme.stop();
-    
+
     this.game.config.sonsword = this.sound.add("sonsword");
 
-this.game.config.sonsword.play();
-    
+    this.game.config.sonsword.play();
+
     // chargement de la carte
-const carteDuNiveau = this.add.tilemap("carte");
-const tileset = carteDuNiveau.addTilesetImage(
+    const carteDuNiveau = this.add.tilemap("carte");
+    const tileset = carteDuNiveau.addTilesetImage(
       "tuiles_de_jeu",
       "Phaser_tuiles_de_jeu"
-    );  
-// chargement du calque calque_plateformes
-this.calque_plateformes = carteDuNiveau.createLayer(
-"calque_plateformes",
-tileset
-); 
-this.calque_plateformes.setCollisionByProperty({ estSolide: true }); 
+    );
+    // chargement du calque calque_plateformes
+    this.calque_plateformes = carteDuNiveau.createLayer(
+      "calque_plateformes",
+      tileset
+    );
+    this.calque_plateformes.setCollisionByProperty({ estSolide: true });
 
     fct.doNothing();
     fct.doAlsoNothing();
@@ -81,7 +89,7 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
 
     // On ajoute une simple image de fond, le ciel, au centre de la zone affichée (400, 300)
     // Par défaut le point d'ancrage d'une image est le centre de cette derniere
-    var imgcarte =this.add.image(500, 470, "Map");
+    var imgcarte = this.add.image(500, 470, "Map");
 
     // la création d'un groupes permet de gérer simultanément les éléments d'une meme famille
     //  Le groupe groupe_plateformes contiendra le sol et deux platesformes sur lesquelles sauter
@@ -102,24 +110,24 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
      ****************************/
     this.porte1 = this.physics.add.staticSprite(350, 90, "img_porte1");
     this.porte2 = this.physics.add.staticSprite(60, 200, "img_porte2");
-    this.porte3 = this.physics.add.staticSprite(700 , 90, "img_porte3");
+    this.porte3 = this.physics.add.staticSprite(700, 90, "img_porte3");
     this.porte4 = this.physics.add.staticSprite(90, 850, "img_porte4");
     this.porte5 = this.physics.add.staticSprite(950, 150, "img_porte5");
     this.porte6 = this.physics.add.staticSprite(950, 850, "img_porte6");
-    
+
     //this.porte8 = this.physics.add.staticSprite(950, 150, "img_porte8");
     //this.porte9 = this.physics.add.staticSprite(950, 850, "img_porte9");
-    
-  
+
+
 
     // On créée un nouveeau personnage : player
     player = this.physics.add.sprite(100, 450, "img_perso");
-    this.physics.add.collider(player, this.calque_plateformes); 
+    this.physics.add.collider(player, this.calque_plateformes);
 
     //  propriétées physiqyes de l'objet player :
     // on donne un petit coefficient de rebond
     player.setCollideWorldBounds(true); // le player se cognera contre les bords du monde
-    this.cameras.main.startFollow(player);  
+    this.cameras.main.startFollow(player);
 
     /***************************
      *  CREATION DES ANIMATIONS *
@@ -165,57 +173,34 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
     /*****************************************************
      *  GESTION DES INTERATIONS ENTRE  GROUPES ET ELEMENTS *
      ******************************************************/
-    player.setPipeline( 'Light2D');
-    this.calque_plateformes.setPipeline( 'Light2D');
-    imgcarte.setPipeline( 'Light2D');
-  
-    light = this.lights.addLight(600, 300, 150);
+    player.setPipeline('Light2D');
+    this.calque_plateformes.setPipeline('Light2D');
+    imgcarte.setPipeline('Light2D');
+
+    light = this.lights.addLight(500, 500, 500);
     console.log()
     light.setIntensity(2);
     this.lights.enable().setAmbientColor(0x000000);
 
 
 
+    porte1Active = true;
+    porte2Active = true;
+    porte3Active = true;
+    porte4Active = true;
+    porte5Active = true;
+    porte6Active = true;
 
 
-    let porte1Active = true;
-    let porte2Active = true;
-    let porte3Active = true;
-    let porte4Active = true;
-    let porte5Active = true;
-    let porte6Active = true;
     
     // Supposez que porte7Active commence par false, puisqu'elle ne sera active que sous certaines conditions
-    let porte7Active = false;
+    porte7Active = false;
+
     
-    // Lorsque vous désactivez une porte, mettez à jour sa variable
-    if (this.physics.overlap(player, this.porte3)) {
-      this.scene.switch("selection");
-      this.porte3.disableBody(true, true);
-      porte3Active = false;
-    }
-    // Répétez pour les autres portes jusqu'à la porte 6
-    
-    // Ensuite, vérifiez si toutes les portes sont désactivées pour activer la porte 7
-    if (!porte3Active ) {
-      if (!porte7Active) {
-        this.porte7 = this.physics.add.staticSprite(510, 465, "fin");
-        porte7Active = true; // Assurez-vous que la porte 7 est marquée comme active
-      }
-    }
 
 
-
-
-
-
-
-
-
-
-   
   }
-  
+
 
   /***********************************************************************/
   /** FONCTION UPDATE 
@@ -223,116 +208,167 @@ this.calque_plateformes.setCollisionByProperty({ estSolide: true });
 
   update() {
 
-   
 
-// Vitesse de déplacement
-const speed = 140;
 
-// Détection de la pression des touches pour le mouvement horizontal
-if (clavier.left.isDown) {
-  velocityX = -speed;
-  player.setFlipX(true);
-} else if (clavier.right.isDown) {
-  velocityX = speed;
-  player.setFlipX(false);
-  
-} else {
-  velocityX = 0; // Aucune touche horizontale pressée
-}
+    // Lorsque vous désactivez une porte, mettez à jour sa variable
+    if (this.physics.overlap(player, this.porte1)) {
+      this.scene.switch("niveau1");
+      this.porte1.disableBody(true, true);
+      porte1Active = false;
+    }
+    if (this.physics.overlap(player, this.porte2)) {
+      this.scene.switch("niveau2");
+      this.porte2.disableBody(true, true);
+      porte2Active = false;
+    }
+    if (this.physics.overlap(player, this.porte3)) {
+      this.scene.switch("niveau3");
+      this.porte3.disableBody(true, true);
+      porte3Active = false;
+    }
+    if (this.physics.overlap(player, this.porte4)) {
+      this.scene.switch("niveau4");
+      this.porte4.disableBody(true, true);
+      porte4Active = false;
+    }
+    if (this.physics.overlap(player, this.porte5)) {
+      this.scene.switch("niveau5");
+      this.porte5.disableBody(true, true);
+      porte5Active = false;
+    }
+    if (this.physics.overlap(player, this.porte6)) {
+      this.scene.switch("niveau6");
+      this.porte6.disableBody(true, true);
+      porte6Active = false;
+    }
+    
+    // Ensuite, vérifiez si toutes les portes sont désactivées pour activer la porte 7
+    if (!porte1Active && !porte2Active  && !porte5Active && !porte6Active) {
+      
+      if (!porte7Active) {
+        console.log("porte 7 desact");
+        this.porte7 = this.physics.add.staticSprite(510, 465, "fin");
+        porte7Active = true; // Assurez-vous que la porte 7 est marquée comme active
+      }
+    }
 
-// Détection de la pression des touches pour le mouvement vertical
-if (clavier.up.isDown) {
-  velocityY = -speed;
-} else if (clavier.down.isDown) {
-  velocityY = speed;
-} else {
-  velocityY = 0; // Aucune touche verticale pressée
-}
+    // Vitesse de déplacement
+    const speed = 140;
 
-// Appliquez les vitesses calculées au joueur
-player.setVelocityX(velocityX);
-player.setVelocityY(velocityY);
+    // Détection de la pression des touches pour le mouvement horizontal
+    if (clavier.left.isDown) {
+      velocityX = -speed;
+      player.setFlipX(true);
+    } else if (clavier.right.isDown) {
+      velocityX = speed;
+      player.setFlipX(false);
 
-// Animation basée sur la direction du mouvement
-if (velocityX < 0) {
-  player.anims.play("anim_tourne_gauche", true);
-} else if (velocityX > 0) {
-  player.anims.play("anim_tourne_droite", true);
-} else if (velocityY < 0) {
-  // Ajoutez ici l'animation pour se déplacer vers le haut, si disponible
-  player.anims.play("anim_tourne_haut", true);
-} else if (velocityY > 0) {
-  // Ajoutez ici l'animation pour se déplacer vers le bas, si disponible
-  player.anims.play("anim_tourne_bas", true);
-} else {
-  // Animation par défaut (idling) si le personnage ne se déplace pas
-}
+    } else {
+      velocityX = 0; // Aucune touche horizontale pressée
+    }
 
- if (velocityX === 0 && velocityY === 0) {
-  // Aucun mouvement : jouer l'animation d'idle
-  player.anims.play("anim_face", true);
-}
+    // Détection de la pression des touches pour le mouvement vertical
+    if (clavier.up.isDown) {
+      velocityY = -speed;
+    } else if (clavier.down.isDown) {
+      velocityY = speed;
+    } else {
+      velocityY = 0; // Aucune touche verticale pressée
+    }
 
-light.x= player.x;
-light.y =player.y;
+    // Appliquez les vitesses calculées au joueur
+    player.setVelocityX(velocityX);
+    player.setVelocityY(velocityY);
+
+    // Animation basée sur la direction du mouvement
+    if (velocityX < 0) {
+      player.anims.play("anim_tourne_gauche", true);
+    } else if (velocityX > 0) {
+      player.anims.play("anim_tourne_droite", true);
+    } else if (velocityY < 0) {
+      // Ajoutez ici l'animation pour se déplacer vers le haut, si disponible
+      player.anims.play("anim_tourne_haut", true);
+    } else if (velocityY > 0) {
+      // Ajoutez ici l'animation pour se déplacer vers le bas, si disponible
+      player.anims.play("anim_tourne_bas", true);
+    } else {
+      // Animation par défaut (idling) si le personnage ne se déplace pas
+    }
+
+    if (velocityX === 0 && velocityY === 0) {
+      // Aucun mouvement : jouer l'animation d'idle
+      player.anims.play("anim_face", true);
+    }
+
+    light.x = player.x;
+    light.y = player.y;
 
     if (clavier.up.isDown && player.body.touching.down) {
       player.setVelocityY(-330);
     }
 
     if (Phaser.Input.Keyboard.JustDown(clavier.space) == true) {
-      if (this.physics.overlap(player, this.porte1)){ 
+      if (this.physics.overlap(player, this.porte1)) {
         this.scene.switch("niveau1");
-      this.porte1.disableBody(true,true);}
-        
+        this.porte1.disableBody(true, true);
+      }
 
-      if (this.physics.overlap(player, this.porte2)){
+
+      if (this.physics.overlap(player, this.porte2)) {
         this.scene.switch("niveau2");
-        this.porte2.disableBody(true,true);}
+        this.porte2.disableBody(true, true);
+      }
 
 
 
 
-      if (this.physics.overlap(player, this.porte3)){
+      if (this.physics.overlap(player, this.porte3)) {
         this.scene.switch("niveau3");
-        this.porte3.disableBody(true,true);}
+        this.porte3.disableBody(true, true);
+      }
 
 
 
-        if (this.physics.overlap(player, this.porte4)){
+      if (this.physics.overlap(player, this.porte4)) {
         this.scene.switch("niveau4");
-        this.porte4.disableBody(true,true);}
+        this.porte4.disableBody(true, true);
+      }
 
 
 
-        if (this.physics.overlap(player, this.porte5)){
+      if (this.physics.overlap(player, this.porte5)) {
         this.scene.switch("niveau5");
-        this.porte5.disableBody(true,true);}
+        this.porte5.disableBody(true, true);
+      }
 
 
 
-        if (this.physics.overlap(player, this.porte6)){
+      if (this.physics.overlap(player, this.porte6)) {
         this.scene.switch("niveau6");
-        this.porte6.disableBody(true,true);}
+        this.porte6.disableBody(true, true);
+      }
 
 
-        if (this.physics.overlap(player, this.porte7)){
+      if (this.physics.overlap(player, this.porte7)) {
         this.scene.switch("niveau7");
-        this.porte7.disableBody(true,true);}
+        this.porte7.disableBody(true, true);
+      }
 
 
-        if (this.physics.overlap(player, this.porte8)){
+      if (this.physics.overlap(player, this.porte8)) {
         this.scene.switch("niveau8");
-        this.porte8.disableBody(true,true);}
+        this.porte8.disableBody(true, true);
+      }
 
 
-        if (this.physics.overlap(player, this.porte9)){
+      if (this.physics.overlap(player, this.porte9)) {
         this.scene.switch("niveau9");
-        this.porte9.disableBody(true,true);}
+        this.porte9.disableBody(true, true);
+      }
     }
 
     this.cameras.main.startFollow(player);
-    this.cameras.main.setZoom(2.6);
+    this.cameras.main.setZoom(2.5);
   }
 }
 

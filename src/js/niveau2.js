@@ -29,7 +29,7 @@ export default class niveau2 extends Phaser.Scene {
       fontSize: "60pt"
     });
 
-    this.add.text(60, 220, "\nNeuf jetons numérotés de 1 à 9 sont placés sur une grille carrée comme sur la figure.\nTu dois enlever trois jetons pour qu’il reste\n deux jetons dans chaque rangée et deux jetons dans chaque colonne.\nEnsuite, additionne les nombres écrits sur les trois jetons qu’il a enlevés.\n\n Quel est le plus grand résultat que l’on peut obtenir ?", {
+    this.add.text(60, 220, "Énoncé de l’énigme :\n \nNeuf jetons numérotés de 1 à 9 sont placés sur une grille carrée comme sur la figure.\nTu dois enlever trois jetons pour qu’il reste\n deux jetons dans chaque rangée et deux jetons dans chaque colonne.\nEnsuite, additionne les nombres écrits sur les trois jetons qu’il a enlevés.", {
       fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
       fontSize: "26pt"
     });
@@ -40,7 +40,10 @@ export default class niveau2 extends Phaser.Scene {
      
     });
 
-    
+    this.add.text(270, 830, "Quel est le plus grand résultat que l’on peut obtenir ?", {
+      fontFamily: 'Gabriola, "Goudy Bookletter 1911", Times, serif',
+      fontSize: "22pt"
+    });
 
     
 
